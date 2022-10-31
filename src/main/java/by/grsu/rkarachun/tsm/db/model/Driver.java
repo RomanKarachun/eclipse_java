@@ -1,6 +1,6 @@
 package by.grsu.rkarachun.tsm.db.model;
 
-public class driver {
+public class Driver {
 	private Integer id;
 
 	private String driver_name;

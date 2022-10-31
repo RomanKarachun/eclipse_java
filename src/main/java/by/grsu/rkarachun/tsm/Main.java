@@ -7,19 +7,19 @@ import by.grsu.rkarachun.tsm.db.model.*;
 
 public class Main {
 	public static void main(String[] args) {
-	    driver driver = new driver();
-	    car car = new car();
-	    order order = new order();
-	    client client = new client();
+	    Driver driver = new Driver();
+	    Car car = new Car();
+	    Order order = new Order();
+	    Client client = new Client();
 	    driver.setId(1);
 	    driver.setDriver_name("Kunickiy");
 	    driver.setCar("Audi");
 	    driver.setPhone_number("375299003564");
 	    
 	    car.setId(1);
-	    car.setOwner_id(1);
-	    car.setComfort_level("Comfort");
-	    car.setNumber_of_seats(4);
+	  //  car.setOwner_id(1);
+	   // car.setComfort_level("Comfort");
+	  //  car.setNumber_of_seats(4);
 	    car.setFree(true);
 	    
 	    order.setId(1);
@@ -32,7 +32,7 @@ public class Main {
 	    order.setOrder_finish(new Timestamp(new Date().getTime()));
 	    
 	    client.setId(1);
-	    client.setClient_name("Wolf");
+	//    client.setClient_name("Wolf");
 	    
 	    System.out.println(driver.toString());
 	    System.out.println(car.toString());

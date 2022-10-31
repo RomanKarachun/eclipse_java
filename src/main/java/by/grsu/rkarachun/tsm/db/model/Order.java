@@ -2,7 +2,7 @@ package by.grsu.rkarachun.tsm.db.model;
 
 import java.sql.Timestamp;
 
-public class order {
+public class Order {
 	private Integer id;
 
 	private Integer client_id;
