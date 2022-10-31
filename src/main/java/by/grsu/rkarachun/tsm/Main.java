@@ -12,27 +12,27 @@ public class Main {
 	    Order order = new Order();
 	    Client client = new Client();
 	    driver.setId(1);
-	    driver.setDriver_name("Kunickiy");
+	    driver.setDriverName("Kunickiy");
 	    driver.setCar("Audi");
-	    driver.setPhone_number("375299003564");
+	    driver.setPhoneNumber("375299003564");
 	    
 	    car.setId(1);
-	  //  car.setOwner_id(1);
-	   // car.setComfort_level("Comfort");
-	  //  car.setNumber_of_seats(4);
+	    car.setOwnerId(1);
+	    car.setComfortLevel("Comfort");
+	    car.setNumberSeats(4);
 	    car.setFree(true);
 	    
 	    order.setId(1);
-	    order.setClient_id(1);
-	    order.setCar_id(1);
+	    order.setClientId(1);
+	    order.setCarId(1);
 	    order.setPrice(5);
 	    order.setDistance(12);
-	    order.setOrder_time(new Timestamp(new Date().getTime()));
-	    order.setArrival_time(new Timestamp(new Date().getTime()));
-	    order.setOrder_finish(new Timestamp(new Date().getTime()));
+	    order.setOrderTime(new Timestamp(new Date().getTime()));
+	    order.setArrivalTime(new Timestamp(new Date().getTime()));
+	    order.setOrderFinish(new Timestamp(new Date().getTime()));
 	    
 	    client.setId(1);
-	//    client.setClient_name("Wolf");
+	    client.setClientName("Wolf");
 	    
 	    System.out.println(driver.toString());
 	    System.out.println(car.toString());
