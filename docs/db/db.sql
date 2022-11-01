@@ -1,9 +1,9 @@
 CREATE TABLE client (
 	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	client_name varchar NOT NULL
+	name varchar NOT NULL
 );
 
-CREATE TABLE order (
+CREATE TABLE order_object (
 	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	client_id integer NOT NULL REFERENCES client(id),
 	car_id integer NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE order (
 );
 
 CREATE TABLE car (
-	id integer NOT NULL REFERENCES order(car_id),
+	id integer NOT NULL REFERENCES order_object(car_id),
 	owner_id integer NOT NULL REFERENCES driver(id),
 	comfort_level varchar NOT NULL,
 	number_of_seats integer NOT NULL,

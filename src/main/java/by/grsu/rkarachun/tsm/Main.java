@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 	    Driver driver = new Driver();
 	    Car car = new Car();
-	    Order order = new Order();
+	    Order_object order_object = new Order_object();
 	    Client client = new Client();
 	    driver.setId(1);
 	    driver.setDriverName("Kunickiy");
@@ -22,21 +22,21 @@ public class Main {
 	    car.setNumberSeats(4);
 	    car.setFree(true);
 	    
-	    order.setId(1);
-	    order.setClientId(1);
-	    order.setCarId(1);
-	    order.setPrice(5);
-	    order.setDistance(12);
-	    order.setOrderTime(new Timestamp(new Date().getTime()));
-	    order.setArrivalTime(new Timestamp(new Date().getTime()));
-	    order.setOrderFinish(new Timestamp(new Date().getTime()));
+	    order_object.setId(1);
+	    order_object.setClientId(1);
+	    order_object.setCarId(1);
+	    order_object.setPrice(5);
+	    order_object.setDistance(12);
+	    order_object.setOrderTime(new Timestamp(new Date().getTime()));
+	    order_object.setArrivalTime(new Timestamp(new Date().getTime()));
+	    order_object.setOrderFinish(new Timestamp(new Date().getTime()));
 	    
 	    client.setId(1);
-	    client.setClientName("Wolf");
+	    client.setName("Wolf");
 	    
 	    System.out.println(driver.toString());
 	    System.out.println(car.toString());
-	    System.out.println(order.toString());
+	    System.out.println(order_object.toString());
 	    System.out.println(client.toString());
 	}
 }

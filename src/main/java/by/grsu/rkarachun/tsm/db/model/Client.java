@@ -3,7 +3,7 @@ package by.grsu.rkarachun.tsm.db.model;
 public class Client {
 	private Integer id;
 
-	private String clientName;
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -13,17 +13,17 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getClientName() {
-		return clientName;
+	public String getName() {
+		return name;
 	}
 
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", clientName=" + clientName + "]";
+		return "Client [id=" + id + ", name=" + name + "]";
 	}
 
 }

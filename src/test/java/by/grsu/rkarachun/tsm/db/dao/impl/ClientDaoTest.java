@@ -12,29 +12,30 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testInsert() {
 		 Client entity = new  Client();
-		entity.setClientName("VW");
+		entity.setName("");
 		dao.insert(entity);
 		Assertions.assertNotNull(entity.getId());
 	}
 
 	@Test
 	public void testUpdate() {
-		 Client entity = new Client();
-		entity.setClientName("VW");
+		Client entity = new Client();
+		entity.setName("VW");
 		dao.insert(entity);
 
 		String newName = "VW_NEW";
-		entity.setClientName(newName);
+		entity.setName(newName);
 		dao.update(entity);
 
-		 Client updatedEntity = dao.getById(entity.getId());
-		Assertions.assertEquals( newName, updatedEntity.getClientName());
+		Client updatedEntity = dao.getById(entity.getId());
+		Assertions.assertEquals(newName, updatedEntity.getName());
+		Assertions.assertNotNull(updatedEntity);
 	}
 
 	@Test
 	public void testDelete() {
 		 Client entity = new  Client();
-		entity.setClientName("VW");
+		entity.setName("VW");
 		dao.insert(entity);
 
 		dao.delete(entity.getId());
@@ -45,12 +46,12 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testGetById() {
 		 Client entity = new  Client();
-		entity.setClientName("VW");
+		entity.setName("VW");
 		dao.insert(entity);
 
 		 Client selectedEntity = dao.getById(entity.getId());
 
-		Assertions.assertEquals(entity.getClientName(), selectedEntity.getClientName());
+		Assertions.assertEquals(entity.getName(), selectedEntity.getName());
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class ClientDaoTest extends AbstractTest{
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			 Client entity = new  Client();
-			entity.setClientName("VW" + i); // generate some random meaningless name as it is just a test (the data can be unreal)
+			entity.setName("VW" + i); // generate some random meaningless name as it is just a test (the data can be unreal)
 			dao.insert(entity);
 		}
 
