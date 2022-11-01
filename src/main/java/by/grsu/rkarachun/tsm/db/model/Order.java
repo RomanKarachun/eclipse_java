@@ -5,19 +5,19 @@ import java.sql.Timestamp;
 public class Order {
 	private Integer id;
 
-	private Integer client_id;
+	private Integer clientId;
 	
-	private Integer car_id;
+	private Integer carId;
 
 	private Integer price;
 
 	private Integer distance;
 
-	private Timestamp order_time;
+	private Timestamp orderTime;
 
-	private Timestamp arrival_time;
+	private Timestamp arrivalTime;
 	
-	private Timestamp order_finish;
+	private Timestamp orderFinish;
 
 	public Integer getId() {
 		return id;
@@ -27,20 +27,20 @@ public class Order {
 		this.id = id;
 	}
 
-	public Integer getClient_id() {
-		return client_id;
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setClient_id(Integer client_id) {
-		this.client_id = client_id;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 
-	public Integer getCar_id() {
-		return car_id;
+	public Integer getCarId() {
+		return carId;
 	}
 
-	public void setCar_id(Integer car_id) {
-		this.car_id = car_id;
+	public void setCarId(Integer carId) {
+		this.carId = carId;
 	}
 
 	public Integer getPrice() {
@@ -59,34 +59,35 @@ public class Order {
 		this.distance = distance;
 	}
 
-	public Timestamp getOrder_time() {
-		return order_time;
+	public Timestamp getOrderTime() {
+		return orderTime;
 	}
 
-	public void setOrder_time(Timestamp order_time) {
-		this.order_time = order_time;
+	public void setOrderTime(Timestamp orderTime) {
+		this.orderTime = orderTime;
 	}
 
-	public Timestamp getArrival_time() {
-		return arrival_time;
+	public Timestamp getArrivalTime() {
+		return arrivalTime;
 	}
 
-	public void setArrival_time(Timestamp arrival_time) {
-		this.arrival_time = arrival_time;
+	public void setArrivalTime(Timestamp arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 
-	public Timestamp getOrder_finish() {
-		return order_finish;
+	public Timestamp getOrderFinish() {
+		return orderFinish;
 	}
 
-	public void setOrder_finish(Timestamp order_finish) {
-		this.order_finish = order_finish;
+	public void setOrderFinish(Timestamp orderFinish) {
+		this.orderFinish = orderFinish;
 	}
 
 	@Override
 	public String toString() {
-		return "order [id=" + id + ", client_id=" + client_id + ", car_id=" + car_id + ", price=" + price
-				+ ", distance=" + distance + ", order_time=" + order_time + ", arrival_time=" + arrival_time
-				+ ", order_finish=" + order_finish + "]";
+		return "Order [id=" + id + ", clientId=" + clientId + ", carId=" + carId + ", price=" + price + ", distance="
+				+ distance + ", orderTime=" + orderTime + ", arrivalTime=" + arrivalTime + ", orderFinish="
+				+ orderFinish + "]";
 	}
+
 }
