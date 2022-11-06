@@ -20,10 +20,10 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testUpdate() {
 		Client entity = new Client();
-		entity.setName("VW");
+		entity.setName("Karachun");
 		dao.insert(entity);
 
-		String newName = "VW_NEW";
+		String newName = "Karachun_NEW";
 		entity.setName(newName);
 		dao.update(entity);
 
@@ -35,7 +35,7 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testDelete() {
 		 Client entity = new  Client();
-		entity.setName("VW");
+		entity.setName("Karachun");
 		dao.insert(entity);
 
 		dao.delete(entity.getId());
@@ -46,7 +46,7 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testGetById() {
 		 Client entity = new  Client();
-		entity.setName("VW");
+		entity.setName("Karachun");
 		dao.insert(entity);
 
 		 Client selectedEntity = dao.getById(entity.getId());
@@ -59,7 +59,7 @@ public class ClientDaoTest extends AbstractTest{
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			 Client entity = new  Client();
-			entity.setName("VW" + i); // generate some random meaningless name as it is just a test (the data can be unreal)
+			entity.setName("Karachun" + i); // generate some random meaningless name as it is just a test (the data can be unreal)
 			dao.insert(entity);
 		}
 

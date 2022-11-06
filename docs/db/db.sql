@@ -19,7 +19,7 @@ CREATE TABLE car (
 	owner_id integer NOT NULL REFERENCES driver(id),
 	comfort_level varchar NOT NULL,
 	number_of_seats integer NOT NULL,
-	free numeric NOT NULL
+	free integer NOT NULL
 );
 
 CREATE TABLE driver (
