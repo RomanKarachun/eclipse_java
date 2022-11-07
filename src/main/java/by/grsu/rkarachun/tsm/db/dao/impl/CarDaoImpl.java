@@ -22,11 +22,12 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	public void insert(Car entity) {
 		try (Connection c = createConnection()) {
 			PreparedStatement pstmt = c
-					.prepareStatement("insert into car(owner_id, comfort_level, number_of_seats, free) values(?,?,?,?)");
-			pstmt.setInt(1, entity.getOwnerId());
-			pstmt.setString(2, entity.getComfortLevel());
-			pstmt.setInt(3, entity.getNumberSeats());
-			pstmt.setBoolean(4, entity.getFree());
+					.prepareStatement("insert into car(number_id, owner_id, comfort_level, number_of_seats, free) values(?,?,?,?,?)");
+			pstmt.setInt(1, entity.getNumberId());
+			pstmt.setInt(2, entity.getOwnerId());
+			pstmt.setString(3, entity.getComfortLevel());
+			pstmt.setInt(4, entity.getNumberSeats());
+			pstmt.setBoolean(5, entity.getFree());
 			pstmt.executeUpdate();
 			entity.setId(getGeneratedId(c, "car"));
 		} catch (SQLException e) {
@@ -39,12 +40,13 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	public void update(Car entity) {
 		try (Connection c = createConnection()) {
 			PreparedStatement pstmt = c
-					.prepareStatement("update car set owner_id=?, comfort_level=?,  number_of_seats=?, free=?, where id=?");
-			pstmt.setInt(1, entity.getOwnerId());
-			pstmt.setString(2, entity.getComfortLevel());
-			pstmt.setInt(3, entity.getNumberSeats());
-			pstmt.setBoolean(4, entity.getFree());
-			pstmt.setInt(5, entity.getId());
+					.prepareStatement("update car set number_id=?, owner_id=?, comfort_level=?,  number_of_seats=?, free=?, where id=?");
+			pstmt.setInt(1, entity.getNumberId());
+			pstmt.setInt(2, entity.getOwnerId());
+			pstmt.setString(3, entity.getComfortLevel());
+			pstmt.setInt(4, entity.getNumberSeats());
+			pstmt.setBoolean(5, entity.getFree());
+			pstmt.setInt(6, entity.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("can't update Car entity", e);
@@ -101,6 +103,7 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	private Car rowToEntity(ResultSet rs) throws SQLException {
 		Car entity = new Car();
 		entity.setId(rs.getInt("id"));
+		entity.setNumberId(rs.getInt("number_id"));
 		entity.setOwnerId(rs.getInt("owner_id"));
 		entity.setComfortLevel(rs.getString("comfort_Level"));
 		// getObject() is unsupported by current JDBC driver. We will get "0" if field is NULL in DB

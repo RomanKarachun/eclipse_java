@@ -18,7 +18,7 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testInsert() {
 		Car entity = new Car();
-		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setNumberId(saveOrd("audi", 7846).getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
@@ -30,7 +30,7 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testInsertWithoutOwner() {
 		Car entity = new Car();
-		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setNumberId(saveOrd("audi", 7846).getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setNumberSeats(4);
 		entity.setFree(true);
@@ -41,7 +41,7 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testUpdate() {
 		Car entity = new Car();
-		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setNumberId(saveOrd("audi", 7846).getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
@@ -49,18 +49,18 @@ public class CarDaoTest extends AbstractTest{
 		carDao.insert(entity);
 		Assertions.assertNotNull(entity.getId());
 
-		Ord newOrd = saveOrd("skoda", "octavia");
-		entity.setId(newOrd.getId());
+		Ord newOrd = saveOrd("skoda", 5764);
+		entity.setNumberId(newOrd.getId());
 		carDao.update(entity);
 
 		Car updatedEntity = carDao.getById(entity.getId());
-		Assertions.assertEquals(newOrd.getCarId(), updatedEntity.getId());
+		Assertions.assertEquals(newOrd.getCarId(), updatedEntity.getNumberId());
 	}
 
 	@Test
 	public void testDelete() {
 		Car entity = new Car();
-		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setNumberId(saveOrd("audi", 7846).getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
@@ -75,7 +75,7 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testGetById() {
 		Car entity = new Car();
-		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setNumberId(saveOrd("audi", 7846).getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
@@ -85,7 +85,7 @@ public class CarDaoTest extends AbstractTest{
 		Car selectedEntity = carDao.getById(entity.getId());
 
 		
-		Assertions.assertEquals(entity.getId(), selectedEntity.getId());
+		Assertions.assertEquals(entity.getNumberId(), selectedEntity.getNumberId());
 		Assertions.assertEquals(0, selectedEntity.getOwnerId());
 		Assertions.assertEquals(entity.getComfortLevel(), selectedEntity.getComfortLevel());
 		Assertions.assertEquals(entity.getNumberSeats(), selectedEntity.getNumberSeats());
@@ -98,10 +98,10 @@ public class CarDaoTest extends AbstractTest{
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			Car entity = new Car();
-			entity.setId(saveOrd("audi", "Q5").getCarId());
-			entity.setComfortLevel("Comfort");
+			entity.setNumberId(saveOrd("audi"+i, 7846+i).getId());
+			entity.setComfortLevel("Comfort"+i);
 			entity.setOwnerId(saveDriver().getId());
-			entity.setNumberSeats(4);
+			entity.setNumberSeats(4+i);
 			entity.setFree(true);
 			carDao.insert(entity);
 		}
@@ -118,7 +118,7 @@ public class CarDaoTest extends AbstractTest{
 		return entity;
 	}
 
-	private Ord saveOrd(String client, String ord) {
+	private Ord saveOrd(String client, Integer ord) {
 		Client clientEntity = new Client();
 		clientEntity.setName(client);
 		clientDao.insert(clientEntity);
@@ -126,7 +126,7 @@ public class CarDaoTest extends AbstractTest{
 		Ord ordEntity = new Ord();
 		
 		ordEntity.setClientId(1);
-		ordEntity.setCarId(1);
+		ordEntity.setCarId(ord);
 		ordEntity.setPrice(12);
 		ordEntity.setDistance(12);
 		ordEntity.setOrderTime(getCurrentTime());

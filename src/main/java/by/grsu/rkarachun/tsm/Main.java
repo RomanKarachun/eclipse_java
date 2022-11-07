@@ -17,6 +17,7 @@ public class Main {
 	    driver.setPhoneNumber("375299003564");
 	    
 	    car.setId(1);
+	    car.setNumberId(1);
 	    car.setOwnerId(1);
 	    car.setComfortLevel("Comfort");
 	    car.setNumberSeats(4);

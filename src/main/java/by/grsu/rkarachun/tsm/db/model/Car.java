@@ -2,6 +2,8 @@ package by.grsu.rkarachun.tsm.db.model;
 
 public class Car {
 	private Integer id;
+	
+	private Integer numberId;
 
 	private Integer ownerId;
 
@@ -17,6 +19,14 @@ public class Car {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getNumberId() {
+		return numberId;
+	}
+
+	public void setNumberId(Integer numberId) {
+		this.numberId = numberId;
 	}
 
 	public Integer getOwnerId() {
@@ -53,8 +63,11 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", ownerId=" + ownerId + ", comfortLevel=" + comfortLevel + ", numberSeats="
-				+ numberSeats + ", free=" + free + "]";
+		return "Car [id=" + id + ", numberId=" + numberId + ", ownerId=" + ownerId + ", comfortLevel=" + comfortLevel
+				+ ", numberSeats=" + numberSeats + ", free=" + free + "]";
 	}
+
+
+	
 
 }
