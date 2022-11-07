@@ -21,10 +21,9 @@ public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> 
 	@Override
 	public void insert(Driver entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c.prepareStatement("insert into driver(driver_name, car, phone_number) values(?,?,?)");
+			PreparedStatement pstmt = c.prepareStatement("insert into driver(driver_name, phone_number) values(?,?)");
 			pstmt.setString(1, entity.getDriverName());
-			pstmt.setString(2, entity.getCar());
-			pstmt.setString(3, entity.getPhoneNumber());
+			pstmt.setString(2, entity.getPhoneNumber());
 			pstmt.executeUpdate();
 			entity.setId(getGeneratedId(c, "driver"));
 		} catch (SQLException e) {
@@ -35,11 +34,10 @@ public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> 
 	@Override
 	public void update(Driver entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c.prepareStatement("update driver set driver_name=?, car=?, phone_number=? where id=?");
+			PreparedStatement pstmt = c.prepareStatement("update driver set driver_name=?, phone_number=? where id=?");
 			pstmt.setString(1, entity.getDriverName());
-			pstmt.setString(2, entity.getCar());
-			pstmt.setString(3, entity.getPhoneNumber());
-			pstmt.setInt(4, entity.getId());
+			pstmt.setString(2, entity.getPhoneNumber());
+			pstmt.setInt(3, entity.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("can't update Driver entity", e);
@@ -97,7 +95,6 @@ public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> 
 		Driver entity = new Driver();
 		entity.setId(rs.getInt("id"));
 		entity.setDriverName(rs.getString("driver_name"));
-		entity.setCar(rs.getString("car"));
 		entity.setPhoneNumber(rs.getString("phone_number"));
 		return entity;
 	}

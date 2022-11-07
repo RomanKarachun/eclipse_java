@@ -1,12 +1,13 @@
 CREATE TABLE client (
-	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	name varchar NOT NULL
+	id integer PRIMARY KEY AUTOINCREMENT,
+	client_name varchar NOT NULL,
+	phone_number varchar NOT NULL
 );
 
 CREATE TABLE ord (
-	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	id integer PRIMARY KEY AUTOINCREMENT,
 	client_id integer NOT NULL REFERENCES client(id),
-	car_id integer NOT NULL,
+	car_id integer NOT NULL REFERENCES car(id),
 	price integer NOT NULL,
 	distance integer NOT NULL,
 	order_time datetime NOT NULL,
@@ -15,17 +16,12 @@ CREATE TABLE ord (
 );
 
 CREATE TABLE car (
-	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-	number_id integer NOT NULL REFERENCES ord(car_id),
-	owner_id integer NOT NULL REFERENCES driver(id),
-	comfort_level varchar NOT NULL,
-	number_of_seats integer NOT NULL,
-	free integer NOT NULL
+	id integer PRIMARY KEY AUTOINCREMENT,
+	driver_id integer NOT NULL REFERENCES driver(id)
 );
 
 CREATE TABLE driver (
-	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+	id integer PRIMARY KEY AUTOINCREMENT,
 	driver_name varchar NOT NULL,
-	car varchar NOT NULL,
 	phone_number varchar NOT NULL
 );

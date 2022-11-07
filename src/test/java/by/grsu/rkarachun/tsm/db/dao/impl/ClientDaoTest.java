@@ -12,7 +12,8 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testInsert() {
 		 Client entity = new  Client();
-		entity.setName("");
+		entity.setClientName("Karachun");
+		entity.setPhoneNumber("375298009031");
 		dao.insert(entity);
 		Assertions.assertNotNull(entity.getId());
 	}
@@ -20,22 +21,24 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testUpdate() {
 		Client entity = new Client();
-		entity.setName("Karachun");
+		entity.setClientName("Karachun");
+		entity.setPhoneNumber("375298009031");
 		dao.insert(entity);
 
 		String newName = "Karachun_NEW";
-		entity.setName(newName);
+		entity.setClientName(newName);
 		dao.update(entity);
 
 		Client updatedEntity = dao.getById(entity.getId());
-		Assertions.assertEquals(newName, updatedEntity.getName());
+		Assertions.assertEquals(newName, updatedEntity.getClientName());
 		Assertions.assertNotNull(updatedEntity);
 	}
 
 	@Test
 	public void testDelete() {
 		 Client entity = new  Client();
-		entity.setName("Karachun");
+		entity.setClientName("Karachun");
+		entity.setPhoneNumber("375298009031");
 		dao.insert(entity);
 
 		dao.delete(entity.getId());
@@ -46,12 +49,14 @@ public class ClientDaoTest extends AbstractTest{
 	@Test
 	public void testGetById() {
 		 Client entity = new  Client();
-		entity.setName("Karachun");
+		entity.setClientName("Karachun");
+		entity.setPhoneNumber("375298009031");
 		dao.insert(entity);
 
 		 Client selectedEntity = dao.getById(entity.getId());
 
-		Assertions.assertEquals(entity.getName(), selectedEntity.getName());
+		Assertions.assertEquals(entity.getClientName(), selectedEntity.getClientName());
+		Assertions.assertEquals(entity.getPhoneNumber(), selectedEntity.getPhoneNumber());
 	}
 
 	@Test
@@ -59,7 +64,8 @@ public class ClientDaoTest extends AbstractTest{
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			 Client entity = new  Client();
-			entity.setName("Karachun" + i); // generate some random meaningless name as it is just a test (the data can be unreal)
+			entity.setClientName("Karachun" + i);
+			entity.setPhoneNumber("375298009031");// generate some random meaningless name as it is just a test (the data can be unreal)
 			dao.insert(entity);
 		}
 

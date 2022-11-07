@@ -13,7 +13,6 @@ public class DriverDaoTest extends AbstractTest{
 	public void testInsert() {
 		Driver entity = new  Driver();
 		entity.setDriverName("Kunickiy");
-		entity.setCar("Audi");
 		entity.setPhoneNumber("375299003564");
 		dao.insert(entity);
 		Assertions.assertNotNull(entity.getId());
@@ -23,7 +22,6 @@ public class DriverDaoTest extends AbstractTest{
 	public void testUpdate() {
 		Driver entity = new Driver();
 		entity.setDriverName("Kunickiy");
-		entity.setCar("Audi");
 		entity.setPhoneNumber("375299003564");
 		dao.insert(entity);
 
@@ -40,7 +38,6 @@ public class DriverDaoTest extends AbstractTest{
 	public void testDelete() {
 		Driver entity = new  Driver();
 		entity.setDriverName("Kunickiy");
-		entity.setCar("Audi");
 		entity.setPhoneNumber("375299003564");
 		dao.insert(entity);
 
@@ -53,7 +50,6 @@ public class DriverDaoTest extends AbstractTest{
 	public void testGetById() {
 		Driver entity = new  Driver();
 		entity.setDriverName("Kunickiy");
-		entity.setCar("Audi");
 		entity.setPhoneNumber("375299003564");
 		dao.insert(entity);
 
@@ -68,7 +64,6 @@ public class DriverDaoTest extends AbstractTest{
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			Driver entity = new  Driver();
 			entity.setDriverName("Kunickiy"+ i);
-			entity.setCar("Audi");
 			entity.setPhoneNumber("375299003564");
 			dao.insert(entity);
 		}

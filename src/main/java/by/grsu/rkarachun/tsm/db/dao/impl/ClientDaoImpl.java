@@ -25,8 +25,9 @@ public class ClientDaoImpl extends AbstractDao implements IDao<Integer, Client> 
 	@Override
 	public void insert(Client entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c.prepareStatement("insert into client(name) values(?)");
-			pstmt.setString(1, entity.getName());
+			PreparedStatement pstmt = c.prepareStatement("insert into client(client_name, phone_number) values(?,?)");
+			pstmt.setString(1, entity.getClientName());
+			pstmt.setString(2, entity.getPhoneNumber());
 			pstmt.executeUpdate();
 			entity.setId(getGeneratedId(c, "client"));
 		} catch (SQLException e) {
@@ -37,9 +38,10 @@ public class ClientDaoImpl extends AbstractDao implements IDao<Integer, Client> 
 	@Override
 	public void update(Client entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c.prepareStatement("update client set name=? where id=?");
-			pstmt.setString(1, entity.getName());
-			pstmt.setInt(2, entity.getId());
+			PreparedStatement pstmt = c.prepareStatement("update client set client_name=?, phone_number=? where id=?");
+			pstmt.setString(1, entity.getClientName());
+			pstmt.setString(2, entity.getPhoneNumber());
+			pstmt.setInt(3, entity.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("can't update Client entity", e);
@@ -96,7 +98,8 @@ public class ClientDaoImpl extends AbstractDao implements IDao<Integer, Client> 
 	private Client rowToEntity(ResultSet rs) throws SQLException {
 		Client entity = new Client();
 		entity.setId(rs.getInt("id"));
-		entity.setName(rs.getString("name"));
+		entity.setClientName(rs.getString("client_name"));
+		entity.setPhoneNumber(rs.getString("phone_number"));
 		return entity;
 	}
 

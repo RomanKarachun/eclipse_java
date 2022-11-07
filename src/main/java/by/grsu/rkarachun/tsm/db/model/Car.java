@@ -3,15 +3,7 @@ package by.grsu.rkarachun.tsm.db.model;
 public class Car {
 	private Integer id;
 	
-	private Integer numberId;
-
-	private Integer ownerId;
-
-	private String comfortLevel;
-
-	private Integer numberSeats;
-	
-	private Boolean free;
+	private Integer driverId;
 
 	public Integer getId() {
 		return id;
@@ -21,53 +13,18 @@ public class Car {
 		this.id = id;
 	}
 
-	public Integer getNumberId() {
-		return numberId;
+	public Integer getDriverId() {
+		return driverId;
 	}
 
-	public void setNumberId(Integer numberId) {
-		this.numberId = numberId;
-	}
-
-	public Integer getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(Integer ownerId) {
-		this.ownerId = ownerId;
-	}
-
-	public String getComfortLevel() {
-		return comfortLevel;
-	}
-
-	public void setComfortLevel(String comfortLevel) {
-		this.comfortLevel = comfortLevel;
-	}
-
-	public Integer getNumberSeats() {
-		return numberSeats;
-	}
-
-	public void setNumberSeats(Integer numberSeats) {
-		this.numberSeats = numberSeats;
-	}
-
-	public Boolean getFree() {
-		return free;
-	}
-
-	public void setFree(Boolean free) {
-		this.free = free;
+	public void setDriverId(Integer driverId) {
+		this.driverId = driverId;
 	}
 
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", numberId=" + numberId + ", ownerId=" + ownerId + ", comfortLevel=" + comfortLevel
-				+ ", numberSeats=" + numberSeats + ", free=" + free + "]";
+		return "Car [id=" + id + ", driverId=" + driverId + "]";
 	}
 
-
-	
 
 }

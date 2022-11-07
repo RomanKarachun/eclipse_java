@@ -5,8 +5,6 @@ public class Driver {
 
 	private String driverName;
 
-	private String car;
-
 	private String phoneNumber;
 
 	public Integer getId() {
@@ -25,14 +23,6 @@ public class Driver {
 		this.driverName = driverName;
 	}
 
-	public String getCar() {
-		return car;
-	}
-
-	public void setCar(String car) {
-		this.car = car;
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -43,9 +33,9 @@ public class Driver {
 
 	@Override
 	public String toString() {
-		return "Driver [id=" + id + ", driverName=" + driverName + ", car=" + car + ", phoneNumber=" + phoneNumber
-				+ "]";
+		return "Driver [id=" + id + ", driverName=" + driverName + ", phoneNumber=" + phoneNumber + "]";
 	}
+
 
 	
 }
