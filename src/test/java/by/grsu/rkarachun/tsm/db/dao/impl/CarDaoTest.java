@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Driver;
 import by.grsu.rkarachun.tsm.db.model.Car;
-import by.grsu.rkarachun.tsm.db.model.Order_object;
+import by.grsu.rkarachun.tsm.db.model.Ord;
 import by.grsu.rkarachun.tsm.db.model.Client;
 
 public class CarDaoTest extends AbstractTest{
 	private static final IDao<Integer, Driver> driverDao = DriverDaoImpl.INSTANCE;
-	private static final IDao<Integer, Order_object> orderDao = OrderDaoImpl.INSTANCE;
+	private static final IDao<Integer, Ord> ordDao = OrdDaoImpl.INSTANCE;
 	private static final IDao<Integer, Car> carDao = CarDaoImpl.INSTANCE;
 	private static final IDao<Integer, Client> clientDao = ClientDaoImpl.INSTANCE;
 
 	@Test
 	public void testInsert() {
 		Car entity = new Car();
-		entity.setId(saveOrderOject(1).getCarId());
+		entity.setId(saveOrd("audi", "Q5").getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
@@ -30,9 +30,8 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testInsertWithoutOwner() {
 		Car entity = new Car();
-		entity.setId(saveOrderOject(1).getCarId());
+		entity.setId(saveOrd("audi", "Q5").getCarId());
 		entity.setComfortLevel("Comfort");
-		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
 		entity.setFree(true);
 		carDao.insert(entity);
@@ -42,33 +41,30 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testUpdate() {
 		Car entity = new Car();
-		Car entity = new Car();
-		entity.setId(saveOrderOject(1).getCarId());
+		entity.setId(saveOrd("audi", "Q5").getCarId());
 		entity.setComfortLevel("Comfort");
 		entity.setOwnerId(saveDriver().getId());
 		entity.setNumberSeats(4);
 		entity.setFree(true);
 		carDao.insert(entity);
+		Assertions.assertNotNull(entity.getId());
 
-		Order_object newOrder = saveOrder_object("opel", "corsa");
-		entity.setVin("new_WAUZZZ8K0BA003806");
-		entity.setModelId(newModel.getId());
-		entity.setUpdated(getCurrentTime());
+		Ord newOrd = saveOrd("skoda", "octavia");
+		entity.setId(newOrd.getId());
 		carDao.update(entity);
 
 		Car updatedEntity = carDao.getById(entity.getId());
-		Assertions.assertEquals(newModel.getId(), updatedEntity.getModelId());
-		Assertions.assertEquals("WAUZZZ8K0BA003806", updatedEntity.getVin()); // VIN should stay unchanged as DAO doesn't update it
-		Assertions.assertNotEquals(updatedEntity.getUpdated(), updatedEntity.getCreated());
+		Assertions.assertEquals(newOrd.getCarId(), updatedEntity.getId());
 	}
 
 	@Test
 	public void testDelete() {
 		Car entity = new Car();
-		entity.setModelId(saveModel("audi", "Q5").getId());
-		entity.setVin("WAUZZZ8K0BA003806");
-		entity.setCreated(getCurrentTime());
-		entity.setUpdated(getCurrentTime());
+		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setComfortLevel("Comfort");
+		entity.setOwnerId(saveDriver().getId());
+		entity.setNumberSeats(4);
+		entity.setFree(true);
 		carDao.insert(entity);
 
 		carDao.delete(entity.getId());
@@ -79,19 +75,22 @@ public class CarDaoTest extends AbstractTest{
 	@Test
 	public void testGetById() {
 		Car entity = new Car();
-		entity.setModelId(saveModel("audi", "Q5").getId());
-		entity.setVin("WAUZZZ8K0BA003806");
-		entity.setCreated(getCurrentTime());
-		entity.setUpdated(getCurrentTime());
+		entity.setId(saveOrd("audi", "Q5").getCarId());
+		entity.setComfortLevel("Comfort");
+		entity.setOwnerId(saveDriver().getId());
+		entity.setNumberSeats(4);
+		entity.setFree(true);
 		carDao.insert(entity);
 
 		Car selectedEntity = carDao.getById(entity.getId());
 
-		Assertions.assertEquals(entity.getModelId(), selectedEntity.getModelId());
-		Assertions.assertEquals(entity.getVin(), selectedEntity.getVin());
+		
+		Assertions.assertEquals(entity.getId(), selectedEntity.getId());
 		Assertions.assertEquals(0, selectedEntity.getOwnerId());
-		Assertions.assertEquals(entity.getCreated(), selectedEntity.getCreated());
-		Assertions.assertEquals(entity.getUpdated(), selectedEntity.getUpdated());
+		Assertions.assertEquals(entity.getComfortLevel(), selectedEntity.getComfortLevel());
+		Assertions.assertEquals(entity.getNumberSeats(), selectedEntity.getNumberSeats());
+		Assertions.assertEquals(entity.getFree(), selectedEntity.getFree());
+
 	}
 
 	@Test
@@ -99,42 +98,42 @@ public class CarDaoTest extends AbstractTest{
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			Car entity = new Car();
-			entity.setModelId(saveModel("audi"+i, "Q5"+i).getId());
-			entity.setVin("WAUZZZ8K0BA003806"+i);
-			entity.setCreated(getCurrentTime());
-			entity.setUpdated(getCurrentTime());
+			entity.setId(saveOrd("audi", "Q5").getCarId());
+			entity.setComfortLevel("Comfort");
+			entity.setOwnerId(saveDriver().getId());
+			entity.setNumberSeats(4);
+			entity.setFree(true);
 			carDao.insert(entity);
 		}
 
 		Assertions.assertEquals(expectedCount, carDao.getAll().size());
 	}
 
-	private UserAccount saveUserAccount() {
-		UserAccount entity = new UserAccount();
-		entity.setFirstName("Ivan");
-		entity.setLastName("Ivanov");
-		entity.setCreated(getCurrentTime());
-		entity.setUpdated(getCurrentTime());
-		userAccountDao.insert(entity);
+	private Driver saveDriver() {
+		Driver entity = new Driver();
+		entity.setDriverName("Kunickiy");
+		entity.setCar("Audi");
+		entity.setPhoneNumber("375299003564");
+		driverDao.insert(entity);
 		return entity;
 	}
 
-	private Model saveModel(String brand, String model) {
-		Brand brandEntity = new Brand();
-		brandEntity.setName(brand);
-		brandEntity.setCreated(getCurrentTime());
-		brandEntity.setUpdated(getCurrentTime());
-		brandDao.insert(brandEntity);
+	private Ord saveOrd(String client, String ord) {
+		Client clientEntity = new Client();
+		clientEntity.setName(client);
+		clientDao.insert(clientEntity);
 
-		Model modelEntity = new Model();
-		modelEntity.setName(model);
-		modelEntity.setActual(true);
-		modelEntity.setBrandId(brandEntity.getId());
-		modelEntity.setCreated(getCurrentTime());
-		modelEntity.setUpdated(getCurrentTime());
-		modelDao.insert(modelEntity);
+		Ord ordEntity = new Ord();
+		
+		ordEntity.setClientId(1);
+		ordEntity.setCarId(1);
+		ordEntity.setPrice(12);
+		ordEntity.setDistance(12);
+		ordEntity.setOrderTime(getCurrentTime());
+		ordEntity.setArrivalTime(getCurrentTime());
+		ordEntity.setOrderFinish(getCurrentTime());
+		ordDao.insert(ordEntity);
 
-		return modelEntity;
+		return ordEntity;
 	}
-
 }

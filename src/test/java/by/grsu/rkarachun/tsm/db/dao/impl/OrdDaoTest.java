@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Client;
-import by.grsu.rkarachun.tsm.db.model.Order_object;
+import by.grsu.rkarachun.tsm.db.model.Ord;
 
-public class OrderDaoTest extends AbstractTest {
+public class OrdDaoTest extends AbstractTest {
 	private static final IDao<Integer, Client> clientDao = ClientDaoImpl.INSTANCE;
-	private static final IDao<Integer, Order_object> orderDao = OrderDaoImpl.INSTANCE;
+	private static final IDao<Integer, Ord> orderDao = OrdDaoImpl.INSTANCE;
 
 	@Test
 	public void testInsert() {
-		Order_object entity = new  Order_object();
+		Ord entity = new  Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(1);
 		entity.setPrice(12);
@@ -27,7 +27,7 @@ public class OrderDaoTest extends AbstractTest {
 
 	@Test
 	public void testUpdate() {
-		Order_object entity = new Order_object();
+		Ord entity = new Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(1);
 		entity.setPrice(12);
@@ -41,14 +41,14 @@ public class OrderDaoTest extends AbstractTest {
 		entity.setCarId(newCarId);
 		orderDao.update(entity);
 
-		Order_object updatedEntity = orderDao.getById(entity.getId());
-		Assertions.assertEquals(newCarId, updatedEntity.getCarId());
+		Ord updatedEntity = orderDao.getById(entity.getId());
+		Assertions.assertEquals(newCarId, updatedEntity.getCarId());;
 		Assertions.assertNotNull(updatedEntity);
 	}
 
 	@Test
 	public void testDelete() {
-		Order_object entity = new  Order_object();
+		Ord entity = new  Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(1);
 		entity.setPrice(12);
@@ -65,7 +65,7 @@ public class OrderDaoTest extends AbstractTest {
 
 	@Test
 	public void testGetById() {
-		Order_object entity = new  Order_object();
+		Ord entity = new  Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(1);
 		entity.setPrice(12);
@@ -75,7 +75,7 @@ public class OrderDaoTest extends AbstractTest {
 		entity.setOrderFinish(getCurrentTime());
 		orderDao.insert(entity);
 
-		Order_object selectedEntity = orderDao.getById(entity.getId());
+		Ord selectedEntity = orderDao.getById(entity.getId());
 
 		Assertions.assertEquals(entity.getClientId(), selectedEntity.getClientId());
 	}
@@ -84,7 +84,7 @@ public class OrderDaoTest extends AbstractTest {
 	public void testGetAll() {
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
-			Order_object entity = new  Order_object();
+			Ord entity = new  Ord();
 			entity.setClientId(saveClient("Karachun"+ i).getId());
 			entity.setCarId(1+ i);
 			entity.setPrice(12);

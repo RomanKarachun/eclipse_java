@@ -2,7 +2,7 @@ package by.grsu.rkarachun.tsm.db.model;
 
 import java.sql.Timestamp;
 
-public class Order_object {
+public class Ord {
 	private Integer id;
 
 	private Integer clientId;
@@ -85,12 +85,9 @@ public class Order_object {
 
 	@Override
 	public String toString() {
-		return "Order_object [id=" + id + ", clientId=" + clientId + ", carId=" + carId + ", price=" + price
-				+ ", distance=" + distance + ", orderTime=" + orderTime + ", arrivalTime=" + arrivalTime
-				+ ", orderFinish=" + orderFinish + "]";
+		return "Ord [id=" + id + ", clientId=" + clientId + ", carId=" + carId + ", price=" + price + ", distance="
+				+ distance + ", orderTime=" + orderTime + ", arrivalTime=" + arrivalTime + ", orderFinish="
+				+ orderFinish + "]";
 	}
-
-
-
 
 }

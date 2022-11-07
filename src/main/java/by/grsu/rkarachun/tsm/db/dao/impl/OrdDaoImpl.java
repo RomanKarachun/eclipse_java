@@ -9,23 +9,23 @@ import java.util.List;
 
 import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
-import by.grsu.rkarachun.tsm.db.model.Order_object;
+import by.grsu.rkarachun.tsm.db.model.Ord;
 
-public class OrderDaoImpl extends AbstractDao implements IDao<Integer, Order_object>{
+public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord>{
 
 	// single instance of this class to be used by the all consumers
-		public static final OrderDaoImpl INSTANCE = new OrderDaoImpl();
+		public static final OrdDaoImpl INSTANCE = new OrdDaoImpl();
 
 		// private constructor disallows instantiation of this class ('Singleton'
 		// pattern) outside of current class
-		private OrderDaoImpl() {
+		private OrdDaoImpl() {
 			super();
 		}
 
 		@Override
-		public void insert(Order_object entity) {
+		public void insert(Ord entity) {
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("insert into order_object(client_id, car_id, price, distance, order_time, arrival_time, order_finish) values(?,?,?,?,?,?,?)");
+				PreparedStatement pstmt = c.prepareStatement("insert into ord(client_id, car_id, price, distance, order_time, arrival_time, order_finish) values(?,?,?,?,?,?,?)");
 				pstmt.setInt(1, entity.getClientId());
 				pstmt.setInt(2, entity.getCarId());
 				pstmt.setInt(3, entity.getPrice());
@@ -34,47 +34,41 @@ public class OrderDaoImpl extends AbstractDao implements IDao<Integer, Order_obj
 				pstmt.setTimestamp(6, entity.getArrivalTime());
 				pstmt.setTimestamp(7, entity.getOrderFinish());
 				pstmt.executeUpdate();
-				entity.setId(getGeneratedId(c, "order_object"));
+				entity.setId(getGeneratedId(c, "ord"));
 			} catch (SQLException e) {
-				throw new RuntimeException("can't insert Order_object entity", e);
+				throw new RuntimeException("can't insert Ord entity", e);
 			}
 		}
 
 		@Override
-		public void update(Order_object entity) {
+		public void update(Ord entity) {
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("update order_object set client_id=?, car_id=?, price=?, distance?, order_time=?, arrival_time=?, order_finish=? where id=?");
-				pstmt.setInt(1, entity.getClientId());
-				pstmt.setInt(2, entity.getCarId());
-				pstmt.setInt(3, entity.getPrice());
-				pstmt.setInt(4, entity.getDistance());
-				pstmt.setTimestamp(5, entity.getOrderTime());
-				pstmt.setTimestamp(6, entity.getArrivalTime());
-				pstmt.setTimestamp(7, entity.getOrderFinish());
-				pstmt.setInt(8, entity.getId());
+				PreparedStatement pstmt = c.prepareStatement("update ord set car_id=? where id=?");
+				pstmt.setInt(1, entity.getCarId());
+				pstmt.setInt(2, entity.getId());
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
-				throw new RuntimeException("can't update Order_object entity", e);
+				throw new RuntimeException("can't update Ord entity", e);
 			}
 		}
 
 		@Override
 		public void delete(Integer id) {
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("delete from order_object where id=?");
+				PreparedStatement pstmt = c.prepareStatement("delete from ord where id=?");
 				pstmt.setInt(1, id);
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
-				throw new RuntimeException("can't delete Order_object entity", e);
+				throw new RuntimeException("can't delete Ord entity", e);
 			}
 
 		}
 
 		@Override
-		public Order_object getById(Integer id) {
-			Order_object entity = null;
+		public Ord getById(Integer id) {
+			Ord entity = null;
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("select * from order_object where id=?");
+				PreparedStatement pstmt = c.prepareStatement("select * from ord where id=?");
 				pstmt.setInt(1, id);
 
 				ResultSet rs = pstmt.executeQuery();
@@ -83,30 +77,30 @@ public class OrderDaoImpl extends AbstractDao implements IDao<Integer, Order_obj
 					entity = rowToEntity(rs);
 				}
 			} catch (SQLException e) {
-				throw new RuntimeException("can't get Order_object entity by id", e);
+				throw new RuntimeException("can't get Ord entity by id", e);
 			}
 
 			return entity;
 		}
 
 		@Override
-		public List<Order_object> getAll() {
-			List<Order_object> entitiesList = new ArrayList<>();
+		public List<Ord> getAll() {
+			List<Ord> entitiesList = new ArrayList<>();
 			try (Connection c = createConnection()) {
-				ResultSet rs = c.createStatement().executeQuery("select * from order_object");
+				ResultSet rs = c.createStatement().executeQuery("select * from ord");
 				while (rs.next()) {
-					Order_object entity = rowToEntity(rs);
+					Ord entity = rowToEntity(rs);
 					entitiesList.add(entity);
 				}
 			} catch (SQLException e) {
-				throw new RuntimeException("can't select Order_object entities", e);
+				throw new RuntimeException("can't select Ord entities", e);
 			}
 
 			return entitiesList;
 		}
 
-		private Order_object rowToEntity(ResultSet rs) throws SQLException {
-			Order_object entity = new Order_object();
+		private Ord rowToEntity(ResultSet rs) throws SQLException {
+			Ord entity = new Ord();
 			entity.setId(rs.getInt("id"));
 			entity.setClientId(rs.getInt("client_id"));
 			entity.setCarId(rs.getInt("car_id"));

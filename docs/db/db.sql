@@ -3,7 +3,7 @@ CREATE TABLE client (
 	name varchar NOT NULL
 );
 
-CREATE TABLE order_object (
+CREATE TABLE ord (
 	id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
 	client_id integer NOT NULL REFERENCES client(id),
 	car_id integer NOT NULL,
