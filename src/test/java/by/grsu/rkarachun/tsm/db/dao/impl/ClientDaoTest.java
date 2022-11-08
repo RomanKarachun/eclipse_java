@@ -27,10 +27,13 @@ public class ClientDaoTest extends AbstractTest{
 
 		String newName = "Karachun_NEW";
 		entity.setClientName(newName);
+		String newPhoneNumber = "new_375298009031";
+		entity.setPhoneNumber(newPhoneNumber);
 		dao.update(entity);
 
 		Client updatedEntity = dao.getById(entity.getId());
 		Assertions.assertEquals(newName, updatedEntity.getClientName());
+		Assertions.assertEquals(newPhoneNumber, updatedEntity.getPhoneNumber());
 		Assertions.assertNotNull(updatedEntity);
 	}
 
@@ -65,7 +68,7 @@ public class ClientDaoTest extends AbstractTest{
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			 Client entity = new  Client();
 			entity.setClientName("Karachun" + i);
-			entity.setPhoneNumber("375298009031");// generate some random meaningless name as it is just a test (the data can be unreal)
+			entity.setPhoneNumber("375298009031" + i);// generate some random meaningless name as it is just a test (the data can be unreal)
 			dao.insert(entity);
 		}
 

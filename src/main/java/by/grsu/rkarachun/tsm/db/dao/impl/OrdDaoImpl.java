@@ -11,104 +11,105 @@ import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Ord;
 
-public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord>{
+public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 
 	// single instance of this class to be used by the all consumers
-		public static final OrdDaoImpl INSTANCE = new OrdDaoImpl();
+	public static final OrdDaoImpl INSTANCE = new OrdDaoImpl();
 
-		// private constructor disallows instantiation of this class ('Singleton'
-		// pattern) outside of current class
-		private OrdDaoImpl() {
-			super();
+	// private constructor disallows instantiation of this class ('Singleton'
+	// pattern) outside of current class
+	private OrdDaoImpl() {
+		super();
+	}
+
+	@Override
+	public void insert(Ord entity) {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement(
+					"insert into ord(client_id, car_id, price, distance, order_time, arrival_time, order_finish) values(?,?,?,?,?,?,?)");
+			pstmt.setInt(1, entity.getClientId());
+			pstmt.setInt(2, entity.getCarId());
+			pstmt.setInt(3, entity.getPrice());
+			pstmt.setInt(4, entity.getDistance());
+			pstmt.setTimestamp(5, entity.getOrderTime());
+			pstmt.setTimestamp(6, entity.getArrivalTime());
+			pstmt.setTimestamp(7, entity.getOrderFinish());
+			pstmt.executeUpdate();
+			entity.setId(getGeneratedId(c, "ord"));
+		} catch (SQLException e) {
+			throw new RuntimeException("can't insert Ord entity", e);
+		}
+	}
+
+	@Override
+	public void update(Ord entity) {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("update ord set car_id=? where id=?");
+			pstmt.setInt(1, entity.getCarId());
+			pstmt.setInt(2, entity.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException("can't update Ord entity", e);
+		}
+	}
+
+	@Override
+	public void delete(Integer id) {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("delete from ord where id=?");
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException("can't delete Ord entity", e);
 		}
 
-		@Override
-		public void insert(Ord entity) {
-			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("insert into ord(client_id, car_id, price, distance, order_time, arrival_time, order_finish) values(?,?,?,?,?,?,?)");
-				pstmt.setInt(1, entity.getClientId());
-				pstmt.setInt(2, entity.getCarId());
-				pstmt.setInt(3, entity.getPrice());
-				pstmt.setInt(4, entity.getDistance());
-				pstmt.setTimestamp(5, entity.getOrderTime());
-				pstmt.setTimestamp(6, entity.getArrivalTime());
-				pstmt.setTimestamp(7, entity.getOrderFinish());
-				pstmt.executeUpdate();
-				entity.setId(getGeneratedId(c, "ord"));
-			} catch (SQLException e) {
-				throw new RuntimeException("can't insert Ord entity", e);
+	}
+
+	@Override
+	public Ord getById(Integer id) {
+		Ord entity = null;
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select * from ord where id=?");
+			pstmt.setInt(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				entity = rowToEntity(rs);
 			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get Ord entity by id", e);
 		}
 
-		@Override
-		public void update(Ord entity) {
-			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("update ord set car_id=? where id=?");
-				pstmt.setInt(1, entity.getCarId());
-				pstmt.setInt(2, entity.getId());
-				pstmt.executeUpdate();
-			} catch (SQLException e) {
-				throw new RuntimeException("can't update Ord entity", e);
+		return entity;
+	}
+
+	@Override
+	public List<Ord> getAll() {
+		List<Ord> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			ResultSet rs = c.createStatement().executeQuery("select * from ord");
+			while (rs.next()) {
+				Ord entity = rowToEntity(rs);
+				entitiesList.add(entity);
 			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select Ord entities", e);
 		}
 
-		@Override
-		public void delete(Integer id) {
-			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("delete from ord where id=?");
-				pstmt.setInt(1, id);
-				pstmt.executeUpdate();
-			} catch (SQLException e) {
-				throw new RuntimeException("can't delete Ord entity", e);
-			}
+		return entitiesList;
+	}
 
-		}
-
-		@Override
-		public Ord getById(Integer id) {
-			Ord entity = null;
-			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("select * from ord where id=?");
-				pstmt.setInt(1, id);
-
-				ResultSet rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					entity = rowToEntity(rs);
-				}
-			} catch (SQLException e) {
-				throw new RuntimeException("can't get Ord entity by id", e);
-			}
-
-			return entity;
-		}
-
-		@Override
-		public List<Ord> getAll() {
-			List<Ord> entitiesList = new ArrayList<>();
-			try (Connection c = createConnection()) {
-				ResultSet rs = c.createStatement().executeQuery("select * from ord");
-				while (rs.next()) {
-					Ord entity = rowToEntity(rs);
-					entitiesList.add(entity);
-				}
-			} catch (SQLException e) {
-				throw new RuntimeException("can't select Ord entities", e);
-			}
-
-			return entitiesList;
-		}
-
-		private Ord rowToEntity(ResultSet rs) throws SQLException {
-			Ord entity = new Ord();
-			entity.setId(rs.getInt("id"));
-			entity.setClientId(rs.getInt("client_id"));
-			entity.setCarId(rs.getInt("car_id"));
-			entity.setPrice(rs.getInt("price"));
-			entity.setDistance(rs.getInt("distance"));
-			entity.setOrderTime(rs.getTimestamp("order_time"));
-			entity.setArrivalTime(rs.getTimestamp("arrival_time"));
-			entity.setOrderFinish(rs.getTimestamp("order_finish"));
-			return entity;
-		}
+	private Ord rowToEntity(ResultSet rs) throws SQLException {
+		Ord entity = new Ord();
+		entity.setId(rs.getInt("id"));
+		entity.setClientId(rs.getInt("client_id"));
+		entity.setCarId(rs.getInt("car_id"));
+		entity.setPrice(rs.getInt("price"));
+		entity.setDistance(rs.getInt("distance"));
+		entity.setOrderTime(rs.getTimestamp("order_time"));
+		entity.setArrivalTime(rs.getTimestamp("arrival_time"));
+		entity.setOrderFinish(rs.getTimestamp("order_finish"));
+		return entity;
+	}
 }

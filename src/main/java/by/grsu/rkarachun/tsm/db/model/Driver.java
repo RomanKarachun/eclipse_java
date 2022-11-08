@@ -36,6 +36,4 @@ public class Driver {
 		return "Driver [id=" + id + ", driverName=" + driverName + ", phoneNumber=" + phoneNumber + "]";
 	}
 
-
-	
 }

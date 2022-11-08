@@ -28,9 +28,13 @@ public class DriverDaoTest extends AbstractTest{
 		String newDriverName = "Kunickiy_NEW";
 		entity.setDriverName(newDriverName);
 		dao.update(entity);
+		String newPhoneNumber = "new_375299003564";
+		entity.setPhoneNumber(newPhoneNumber);
+		dao.update(entity);
 
 		Driver updatedEntity = dao.getById(entity.getId());
 		Assertions.assertEquals(newDriverName, updatedEntity.getDriverName());
+		Assertions.assertEquals(newPhoneNumber, updatedEntity.getPhoneNumber());
 		Assertions.assertNotNull(updatedEntity);
 	}
 
@@ -64,7 +68,7 @@ public class DriverDaoTest extends AbstractTest{
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			Driver entity = new  Driver();
 			entity.setDriverName("Kunickiy"+ i);
-			entity.setPhoneNumber("375299003564");
+			entity.setPhoneNumber("375299003564" + i);
 			dao.insert(entity);
 		}
 

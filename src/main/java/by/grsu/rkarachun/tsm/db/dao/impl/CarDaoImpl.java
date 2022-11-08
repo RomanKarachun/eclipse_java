@@ -21,9 +21,13 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	@Override
 	public void insert(Car entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c
-					.prepareStatement("insert into car(driver_id) values(?)");
+			PreparedStatement pstmt = c.prepareStatement(
+					"insert into car(driver_id, car_name, comfort_level, number_seats, free) values(?,?,?,?,?)");
 			pstmt.setInt(1, entity.getDriverId());
+			pstmt.setString(2, entity.getCarName());
+			pstmt.setString(3, entity.getComfortLevel());
+			pstmt.setInt(4, entity.getNumberSeats());
+			pstmt.setBoolean(5, entity.getFree());
 			pstmt.executeUpdate();
 			entity.setId(getGeneratedId(c, "car"));
 		} catch (SQLException e) {
@@ -35,9 +39,14 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	@Override
 	public void update(Car entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c.prepareStatement("update car set driver_id=? where id=?");
+			PreparedStatement pstmt = c.prepareStatement(
+					"update car set driver_id=?, car_name=?, comfort_level=?, number_seats=?, free=? where id=?");
 			pstmt.setInt(1, entity.getDriverId());
-			pstmt.setInt(2, entity.getId());
+			pstmt.setString(2, entity.getCarName());
+			pstmt.setString(3, entity.getComfortLevel());
+			pstmt.setInt(4, entity.getNumberSeats());
+			pstmt.setBoolean(5, entity.getFree());
+			pstmt.setInt(6, entity.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("can't update Car entity", e);
@@ -94,8 +103,13 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	private Car rowToEntity(ResultSet rs) throws SQLException {
 		Car entity = new Car();
 		entity.setId(rs.getInt("id"));
+		entity.setCarName(rs.getString("car_name"));
 		entity.setDriverId(rs.getInt("driver_id"));
-		// getObject() is unsupported by current JDBC driver. We will get "0" if field is NULL in DB
+		entity.setComfortLevel(rs.getString("comfort_level"));
+		entity.setNumberSeats(rs.getInt("number_seats"));
+		entity.setFree(rs.getBoolean("free"));
+		// getObject() is unsupported by current JDBC driver. We will get "0" if field
+		// is NULL in DB
 		return entity;
 	}
 }

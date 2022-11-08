@@ -4,7 +4,7 @@ public class Client {
 	private Integer id;
 
 	private String clientName;
-	
+
 	private String phoneNumber;
 
 	public Integer getId() {
@@ -35,6 +35,5 @@ public class Client {
 	public String toString() {
 		return "Client [id=" + id + ", clientName=" + clientName + ", phoneNumber=" + phoneNumber + "]";
 	}
-
 
 }

@@ -17,7 +17,11 @@ CREATE TABLE ord (
 
 CREATE TABLE car (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	driver_id integer NOT NULL REFERENCES driver(id)
+	car_name varchar NOT NULL,
+	driver_id integer NOT NULL REFERENCES driver(id),
+	comfort_level varchar NOT NULL,
+	number_seats integer NOT NULL,
+	free boolean NOT NULL
 );
 
 CREATE TABLE driver (
