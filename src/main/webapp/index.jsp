@@ -26,7 +26,6 @@
                      <th><a href="edit_order.jsp"><i class="large material-icons">add</i></a></th>
 				     <th><a href="list.jsp"><i class="large material-icons">list</i></a></th>
 				     <th><a href="edit_list.jsp"><i class="large material-icons">group_add</i></a></th>
-				     <th><a href="contact.jsp"><i class="large material-icons">contacts</i></a></th>
 				     <th><a href="#"><i class="large material-icons">exit_to_app</i></a></th>
 				</tr>
 			</tbody>
@@ -37,18 +36,19 @@
 					<td>(Add/edit orders)</td>
 					<td>(Database of drivers)</td>
 					<td>(Add/edit drivers)</td>
-					<td>(Contact details)</td>
 					<td>(login/logout)</td>
 					
 				</tr>
 		</table>
-
-<p class="aligncenter"><img src="taxi.jpg" width="450" height="252"></p>
-<style>
-.aligncenter {
-    text-align: center;
-}
-</style>
+<div class="section no-pad-bot" id="index-banner">
+	<div class="container">
+		<div class="light-blue lighten-1"><h3>📪 How to reach us:<br>
+GMAIL: romankarachun9@gmail.com<br>
+GH: github.com/RomanKarachun<br>
+Telegram: @romroom9
+</h3>
+</div>
+</div>
+</div>
 
 </t:wrapper>
-

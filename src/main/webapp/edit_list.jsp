@@ -9,7 +9,7 @@
 			<form class="col s12">
 				<div class="row">
 					<div class="input-field col s4">
-						<input number="Placeholder" id="â" type="text" class="validate"> <label for="â">â</label>
+						<input number="Placeholder"  type="text" class="validate"> <label for="â">â</label>
 					</div>
 					<div class="input-field col s4">
 						<input id="driver_name" type="text" class="validate"> <label for="driver_name">Driver Name</label>
