@@ -1,7 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<c:set var="pageTitle" value="Menu" scope="application" />
+<c:set var="pageTitle" value="TAXI CONTROL ROOM" scope="application" />
 
 <t:wrapper>
 
@@ -42,10 +42,10 @@
 		</table>
 <div class="section no-pad-bot" id="index-banner">
 	<div class="container">
-		<div class="light-blue lighten-1"><h3>📪 How to reach us:<br>
-GMAIL: romankarachun9@gmail.com<br>
-GH: github.com/RomanKarachun<br>
-Telegram: @romroom9
+		<div class="light-blue lighten-1"><h3 style="text-align: left;">📪 How to reach us:<br>
+<br>GMAIL: romankarachun9@gmail.com<br>
+<br>GH: github.com/RomanKarachun<br>
+<br>Telegram: @romroom9
 </h3>
 </div>
 </div>

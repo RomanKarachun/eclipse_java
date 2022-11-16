@@ -1,11 +1,11 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<c:set var="pageTitle" value="Menu" scope="application" />
+<c:set var="pageTitle" value="Cars list" scope="application" />
 
 <t:wrapper>
 
-		<h1>Drivers list</h1>
+		<h1>Cars list</h1>
 		<div class="row">
 			<div class="col s12">
 				<div class="center-align">
@@ -16,7 +16,7 @@
 		<table>
 			<thead>
 				<tr>
-					<th>â</th>
+					<th>№</th>
 					<th>Driver name</th>
 					<th>Car</th>
 					<th>Phone number</th>
