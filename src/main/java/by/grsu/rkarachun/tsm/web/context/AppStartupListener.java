@@ -40,12 +40,18 @@ public class AppStartupListener implements ServletContextListener {
 
 	private void loadInitialData() {
 		
+		Client clientEntity = new Client();
+		clientEntity.setClientName("Karachun");
+		clientEntity.setPhoneNumber("375298009031");
+		clientDao.insert(clientEntity);
+		System.out.println("created: " + clientEntity);
+		
 		Driver driverEntity = new Driver();
 		driverEntity.setDriverName("Kunickiy");
 		driverEntity.setPhoneNumber("375299003564");
 		driverDao.insert(driverEntity);
 		System.out.println("created: " + driverEntity);
-
+		
 		Car carEntity = new Car();
 		carEntity.setCarName("Audi 100");
 		carEntity.setDriverId(driverEntity.getId());
@@ -54,12 +60,6 @@ public class AppStartupListener implements ServletContextListener {
 		carEntity.setFree(true);
 		carDao.insert(carEntity);
 		System.out.println("created: " + carEntity);
-
-		Client clientEntity = new Client();
-		clientEntity.setClientName("Karachun");
-		clientEntity.setPhoneNumber("375298009031");
-		clientDao.insert(clientEntity);
-		System.out.println("created: " + clientEntity);
 		
 		Ord ordEntity = new Ord();
 		ordEntity.setClientId(clientEntity.getId());
@@ -72,7 +72,6 @@ public class AppStartupListener implements ServletContextListener {
 		ordDao.insert(ordEntity);
 		System.out.println("created: " + ordEntity);
 
-		
 		System.out.println("initial data created");
 	}
 
