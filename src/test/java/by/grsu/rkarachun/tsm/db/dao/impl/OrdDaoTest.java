@@ -18,7 +18,7 @@ public class OrdDaoTest extends AbstractTest {
 	@Test
 	public void testInsert() {
 		Ord entity = new  Ord();
-		entity.setClientId(saveClient("Karachun", "375298009031").getId());
+		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(saveCar("Audi 100").getId());
 		entity.setPrice(12);
 		entity.setDistance(12);
@@ -32,7 +32,7 @@ public class OrdDaoTest extends AbstractTest {
 	@Test
 	public void testUpdate() {
 		Ord entity = new Ord();
-		entity.setClientId(saveClient("Karachun", "375298009031").getId());
+		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(saveCar("Audi 100").getId());
 		entity.setPrice(12);
 		entity.setDistance(12);
@@ -41,7 +41,7 @@ public class OrdDaoTest extends AbstractTest {
 		entity.setOrderFinish(getCurrentTime());
 		orderDao.insert(entity);
 
-		Client newClient = saveClient("new_Karachun", "new_375298009031");
+		Client newClient = saveClient("new_Karachun");
 		Car newCar = saveCar("new_Audi 100");
 		entity.setPrice(13);
 		entity.setDistance(12);
@@ -59,8 +59,8 @@ public class OrdDaoTest extends AbstractTest {
 	@Test
 	public void testDelete() {
 		Ord entity = new  Ord();
-		entity.setClientId(saveClient("Karachun", "375298009031").getId());
-		entity.setCarId(saveCar("new_Audi 100").getId());
+		entity.setClientId(saveClient("Karachun").getId());
+		entity.setCarId(saveCar("Audi 100").getId());
 		entity.setPrice(12);
 		entity.setDistance(12);
 		entity.setOrderTime(getCurrentTime());
@@ -76,8 +76,8 @@ public class OrdDaoTest extends AbstractTest {
 	@Test
 	public void testGetById() {
 		Ord entity = new  Ord();
-		entity.setClientId(saveClient("Karachun", "375298009031").getId());
-		entity.setCarId(saveCar("new_Audi 100").getId());
+		entity.setClientId(saveClient("Karachun").getId());
+		entity.setCarId(saveCar("Audi 100").getId());
 		entity.setPrice(12);
 		entity.setDistance(12);
 		entity.setOrderTime(getCurrentTime());
@@ -95,8 +95,8 @@ public class OrdDaoTest extends AbstractTest {
 		int expectedCount = getRandomNumber(1, 5);
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			Ord entity = new  Ord();
-			entity.setClientId(saveClient("Karachun" +i, "375298009031" +i).getId());
-			entity.setCarId(saveCar("new_Audi 100" +i).getId());
+			entity.setClientId(saveClient("Karachun" +i).getId());
+			entity.setCarId(saveCar("Audi 100" +i).getId());
 			entity.setPrice(12);
 			entity.setDistance(12);
 			entity.setOrderTime(getCurrentTime());
@@ -107,12 +107,12 @@ public class OrdDaoTest extends AbstractTest {
 
 		Assertions.assertEquals(expectedCount, orderDao.getAll().size());
 	}
-	private Client saveClient(String client_name, String phone_number) {
-		Client entity = new Client();
-		entity.setClientName(client_name);
-		entity.setPhoneNumber(phone_number);
-		clientDao.insert(entity);
-		return entity;
+	private Client saveClient(String client_name) {
+		Client clientEntity = new Client();
+		clientEntity.setClientName(client_name);
+		clientEntity.setPhoneNumber("375298009031");
+		clientDao.insert(clientEntity);
+		return clientEntity;
 	}
 	
 	private Car saveCar(String car_name) {
