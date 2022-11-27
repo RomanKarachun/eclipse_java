@@ -14,10 +14,32 @@
 		<servlet-class>by.grsu.rkarachun.tsm.web.servlet.ClientServlet</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>DriverServlet</servlet-name>
+		<servlet-class>by.grsu.rkarachun.tsm.web.servlet.DriverServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CarServlet</servlet-name>
+		<servlet-class>by.grsu.rkarachun.tsm.web.servlet.CarServlet</servlet-class>
+	</servlet>
+	
+
 	<servlet-mapping>
 		<servlet-name>ClientServlet</servlet-name>
 		<url-pattern>/client</url-pattern>
 	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DriverServlet</servlet-name>
+		<url-pattern>/driver</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CarServlet</servlet-name>
+		<url-pattern>/car</url-pattern>
+	</servlet-mapping>
+
 
 
 </web-app>

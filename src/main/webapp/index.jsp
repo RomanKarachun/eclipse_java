@@ -22,10 +22,10 @@
 			<tbody>
 				<tr>
 					<th><a href="index.jsp"><i class="large material-icons">home</i></a></th>
-					 <th><a href="order.jsp"><i class="large material-icons">drag_handle</i></a></th>
-                     <th><a href="edit_order.jsp"><i class="large material-icons">add</i></a></th>
-				     <th><a href="list.jsp"><i class="large material-icons">list</i></a></th>
-				     <th><a href="edit_list.jsp"><i class="large material-icons">group_add</i></a></th>
+					 <th><a href="order-list.jsp"><i class="large material-icons">drag_handle</i></a></th>
+                     <th><a href="order-edit.jsp"><i class="large material-icons">add</i></a></th>
+				     <th><a href="car-list.jsp"><i class="large material-icons">list</i></a></th>
+				     <th><a href="car-edit.jsp"><i class="large material-icons">group_add</i></a></th>
 				     <th><a href="#"><i class="large material-icons">exit_to_app</i></a></th>
 				</tr>
 			</tbody>

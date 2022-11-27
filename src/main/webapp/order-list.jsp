@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col s12">
 				<div class="center-align">
-					<a class="btn-floating btn-large cyan pulse"  title="edit" href="edit_order.jsp"><i class="material-icons">add</i></a>
+					<a class="btn-floating btn-large cyan pulse"  title="edit" href="order-edit.jsp"><i class="material-icons">add</i></a>
 				</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 					<td>10:56 12.10.2022</td>
 					<td>11:02 12.10.2022</td>
 					<td>11:20 12.10.2022 </td>
-					<td><a class="btn-floating btn-large cyan pulse"  title="edit" href="edit_order.jsp"><i class="material-icons">edit</i></a>
+					<td><a class="btn-floating btn-large cyan pulse"  title="edit" href="order-edit.jsp"><i class="material-icons">edit</i></a>
 				</tr>
 			</tbody>
 		</table>

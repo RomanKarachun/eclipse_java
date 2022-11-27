@@ -40,7 +40,7 @@
 
 		<div class="row">
 			<div class="col s12 input-field center-align">
-				<a class="btn waves-effect waves-light red" href="order.jsp"><i class="material-icons left">order</i>To order</a> <a class="btn waves-effect waves-light green"
+				<a class="btn waves-effect waves-light red" href="order-list.jsp"><i class="material-icons left">order-list</i>To order-list</a> <a class="btn waves-effect waves-light green"
 					href="#"><i class="material-icons left">save</i>Save</a>
 			</div>
 		</div>

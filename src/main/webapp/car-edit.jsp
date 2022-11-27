@@ -34,7 +34,7 @@
 
 		<div class="row">
 			<div class="col s12 input-field center-align">
-				<a class="btn waves-effect waves-light red" href="list.jsp"><i class="material-icons left">list</i>To list</a> <a class="btn waves-effect waves-light green"
+				<a class="btn waves-effect waves-light red" href="car-list.jsp"><i class="material-icons left">car-list</i>To car-list</a> <a class="btn waves-effect waves-light green"
 					href="#"><i class="material-icons left">save</i>Save</a>
 			</div>
 		</div>
