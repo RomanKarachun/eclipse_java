@@ -1,9 +1,9 @@
 package by.grsu.rkarachun.tsm.web.dto;
 
-public class DriverDto {
+public class ClientDto {
 	private Integer id;
 
-	private String driverName;
+	private String clientName;
 
 	private String phoneNumber;
 
@@ -15,12 +15,12 @@ public class DriverDto {
 		this.id = id;
 	}
 
-	public String getDriverName() {
-		return driverName;
+	public String getClientName() {
+		return clientName;
 	}
 
-	public void setDriverName(String driverName) {
-		this.driverName = driverName;
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
 
 	public String getPhoneNumber() {
@@ -30,4 +30,5 @@ public class DriverDto {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 }

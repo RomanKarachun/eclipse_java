@@ -6,6 +6,8 @@ public class CarDto {
 	private String carName;
 
 	private Integer driverId;
+	
+	private String driverName;
 
 	private String comfortLevel;
 
@@ -37,6 +39,14 @@ public class CarDto {
 		this.driverId = driverId;
 	}
 
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+
 	public String getComfortLevel() {
 		return comfortLevel;
 	}
@@ -60,5 +70,6 @@ public class CarDto {
 	public void setFree(Boolean free) {
 		this.free = free;
 	}
+
 	
 }

@@ -16,24 +16,23 @@
 		<table>
 			<thead>
 				<tr>
-					<th>№</th>
-					<th>Driver name</th>
-					<th>Car</th>
-					<th>Phone number</th>
-					<th>Comfort level</th>
-					<th>Number of seats</th>
-					<th>Free</th>
+					<th>id</th>
+					<th>car name</th>
+					<th>driver name</th>
+					<th>comfort level</th>
+					<th>number seats</th>
+					<th>free</th>
+					<th>actions</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach var="entity" items="${list}" varStatus="loopCounter">
 				<tr>
 					<td><c:out value="${entity.id}" /></td>
+					<td><c:out value="${entity.carName}" /></td>
 					<td><c:out value="${entity.driverName}" /></td>
-					<td><c:out value="${entity.Car}" /></td>
-					<td><c:out value="${entity.phoneNumber}" /></td>
 					<td><c:out value="${entity.comfortLevel}" /></td>
-					<td><c:out value="${entity.numberSea}" /></td>
+					<td><c:out value="${entity.numberSeats}" /></td>
 					<td><c:out value="${entity.free}" /></td>
 					<td><a class="btn-small btn-floating waves-effect waves-light blue" title="редактировать" href="/car?view=edit&id=${entity.id}"><i
 							class="material-icons">edit</i></a><a class="btn-small btn-floating waves-effect waves-light red" title="удалить" onclick="sendHTTPDelete('/car?id=${entity.id}')"><i class="material-icons">delete</i></a></td>
@@ -41,7 +40,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
-
 </t:wrapper>
 

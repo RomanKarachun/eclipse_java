@@ -20,16 +20,12 @@
 		<a id="logo-container" href="" class="brand-logo">TCM</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li><a href="index.jsp"><i class="large material-icons">home</i></a></li>
-			<li><a href="order-list.jsp"><i class="large material-icons">drag_handle</i></a></li>
-			<li><a href="order-edit.jsp"><i class="large material-icons">add</i></a></li>
-			<li><a href="car-list.jsp"><i class="large material-icons">car-list</i></a></li>
-			<li><a href="car-edit.jsp"><i class="large material-icons">group_add</i></a></li>
+			<li><a href="/ord"><i class="large material-icons">drag_handle</i></a></li>
+			<li><a href="ord?view=edit"><i class="large material-icons">add</i></a></li>
+			<li><a href="car"><i class="large material-icons">menu</i></a></li>
+			<li><a href="car?view=edit"><i class="large material-icons">group_add</i></a></li>
 			<li><a href="#"><i class="large material-icons">exit_to_app</i></a></li>
 			<li><a href="#">
-					<%
-					java.util.Date date = new java.util.Date();
-					out.print(date.toString());
-					%>
 			</a></li>
 		</ul>
 	</div>

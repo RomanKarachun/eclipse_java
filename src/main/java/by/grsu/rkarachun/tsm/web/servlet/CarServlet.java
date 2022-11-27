@@ -1,8 +1,6 @@
 package by.grsu.rkarachun.tsm.web.servlet;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +48,7 @@ public class CarServlet extends HttpServlet{
 
 			// build data for complex fields
 			Driver driver = driverDao.getById(entity.getDriverId());
-			dto.setCarName(driver.getDriverName());
+			dto.setDriverName(driver.getDriverName());
 			return dto;
 		}).collect(Collectors.toList());
 

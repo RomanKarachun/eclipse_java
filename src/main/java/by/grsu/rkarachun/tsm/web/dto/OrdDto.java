@@ -1,13 +1,17 @@
-package by.grsu.rkarachun.tsm.db.model;
+package by.grsu.rkarachun.tsm.web.dto;
 
 import java.sql.Timestamp;
 
-public class Ord {
+public class OrdDto {
 	private Integer id;
 
 	private Integer clientId;
+	
+	private String clientName;
 
 	private Integer carId;
+	
+	private String carName;
 
 	private Integer price;
 
@@ -35,12 +39,28 @@ public class Ord {
 		this.clientId = clientId;
 	}
 
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
 	public Integer getCarId() {
 		return carId;
 	}
 
 	public void setCarId(Integer carId) {
 		this.carId = carId;
+	}
+
+	public String getCarName() {
+		return carName;
+	}
+
+	public void setCarName(String carName) {
+		this.carName = carName;
 	}
 
 	public Integer getPrice() {
@@ -81,13 +101,6 @@ public class Ord {
 
 	public void setOrderFinish(Timestamp orderFinish) {
 		this.orderFinish = orderFinish;
-	}
-
-	@Override
-	public String toString() {
-		return "Ord [id=" + id + ", clientId=" + clientId + ", carId=" + carId + ", price=" + price + ", distance="
-				+ distance + ", orderTime=" + orderTime + ", arrivalTime=" + arrivalTime + ", orderFinish="
-				+ orderFinish + "]";
 	}
 
 

@@ -24,6 +24,11 @@
 		<servlet-class>by.grsu.rkarachun.tsm.web.servlet.CarServlet</servlet-class>
 	</servlet>
 	
+	<servlet>
+		<servlet-name>OrdServlet</servlet-name>
+		<servlet-class>by.grsu.rkarachun.tsm.web.servlet.OrdServlet</servlet-class>
+	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>ClientServlet</servlet-name>
@@ -38,6 +43,11 @@
 	<servlet-mapping>
 		<servlet-name>CarServlet</servlet-name>
 		<url-pattern>/car</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>OrdServlet</servlet-name>
+		<url-pattern>/ord</url-pattern>
 	</servlet-mapping>
 
 
