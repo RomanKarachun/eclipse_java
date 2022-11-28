@@ -66,16 +66,17 @@ public class CarServlet extends HttpServlet{
 			Car entity = carDao.getById(carId);
 			dto.setId(entity.getId());
 			dto.setCarName(entity.getCarName());
+			dto.setDriverId(entity.getDriverId());
 			dto.setComfortLevel(entity.getComfortLevel());
 			dto.setNumberSeats(entity.getNumberSeats());
 			dto.setFree(entity.getFree());
 		}
 		req.setAttribute("dto", dto);
-		req.setAttribute("allModels", getAllModelsDtos());
+		req.setAttribute("allModels", getAllDriversDtos());
 		req.getRequestDispatcher("car-edit.jsp").forward(req, res);
 	}
 
-	private List<DriverDto> getAllModelsDtos() {
+	private List<DriverDto> getAllDriversDtos() {
 		return driverDao.getAll().stream().map((entity) -> {
 			DriverDto dto = new DriverDto();
 			dto.setId(entity.getId());
