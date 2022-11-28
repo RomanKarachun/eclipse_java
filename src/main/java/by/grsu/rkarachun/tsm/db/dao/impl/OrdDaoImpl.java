@@ -27,8 +27,8 @@ public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 		try (Connection c = createConnection()) {
 			PreparedStatement pstmt = c.prepareStatement(
 					"insert into ord(client_id, car_id, price, distance, order_time, arrival_time, order_finish) values(?,?,?,?,?,?,?)");
-			pstmt.setInt(1, entity.getClientId());
-			pstmt.setInt(2, entity.getCarId());
+			pstmt.setObject(1, entity.getClientId());
+			pstmt.setObject(2, entity.getCarId());
 			pstmt.setInt(3, entity.getPrice());
 			pstmt.setInt(4, entity.getDistance());
 			pstmt.setTimestamp(5, entity.getOrderTime());
@@ -44,9 +44,15 @@ public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 	@Override
 	public void update(Ord entity) {
 		try (Connection c = createConnection()) {
-			PreparedStatement pstmt = c.prepareStatement("update ord set car_id=? where id=?");
-			pstmt.setInt(1, entity.getCarId());
-			pstmt.setInt(2, entity.getId());
+			PreparedStatement pstmt = c.prepareStatement("update ord set client_id=?, car_id=?, price=?, distance=?, order_time=?, arrival_time==?, order_finish=? where id=?");
+			pstmt.setObject(1, entity.getClientId());
+			pstmt.setObject(2, entity.getCarId());
+			pstmt.setInt(3, entity.getPrice());
+			pstmt.setInt(4, entity.getDistance());
+			pstmt.setTimestamp(5, entity.getOrderTime());
+			pstmt.setTimestamp(6, entity.getArrivalTime());
+			pstmt.setTimestamp(7, entity.getOrderFinish());
+			pstmt.setInt(8, entity.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("can't update Ord entity", e);

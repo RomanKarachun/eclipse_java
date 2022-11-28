@@ -32,10 +32,10 @@
 			<tbody>
 				<tr>					
 				    <td>(Home page)</td>
-					<td>(Orders changes)</td>
+					<td>(Database of orders)</td>
 					<td>(Add/edit orders)</td>
-					<td>(Database of drivers)</td>
-					<td>(Add/edit drivers)</td>
+					<td>(Database of cars)</td>
+					<td>(Add/edit cars)</td>
 					<td>(login/logout)</td>
 					
 				</tr>

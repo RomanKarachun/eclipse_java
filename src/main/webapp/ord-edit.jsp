@@ -15,32 +15,20 @@
 		<div class="row">
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
-					<div class="input-field col s4">
-						<input type="text" name="clientName" value="${dto.clientName}" ${empty dto.id ? '' : 'disabled'} > <label for="clientName">Client name</label>
+					<div class="input-field col s3">
+						<input type="text" name="clientName" value="${dto.clientName}"> <label for="clientName">Client name</label>
 					</div>
-					<div class="input-field col s4">
+					<div class="input-field col s3">
 						<input type="text" name="carName" value="${dto.carName}"> <label for="carName">Car name</label>
 					</div>
-					<div class="input-field col s4">
+					<div class="input-field col s3">
 						<input type="text" name="price" value="${dto.price}"> <label for="price">Price</label>
 					</div>
-					</div>
-				
-				
-				<div class="row">
 					<div class="input-field col s3">
 						<input type="text" name="distance" value="${dto.distance}"> <label for="distance">Distance</label>
 					</div>
-					<div class="input-field col s3">
-						<input type="text" name="orderTime" value="${dto.orderTime}"> <label for="orderTime">Order time</label>
 					</div>
-					<div class="input-field col s3">
-						<input type="text" name="arrivalTime" value="${dto.arrivalTime}"> <label for="arrivalTime">Arrival time</label>
-					</div>
-					<div class="input-field col s3">
-						<input type="text" name="orderFinish" value="${dto.orderFinish}"> <label for="orderFinish">Order finish</label>
-					</div>
-					</div>
+
 				
 </div>
 		<div class="row">

@@ -23,7 +23,7 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 		try (Connection c = createConnection()) {
 			PreparedStatement pstmt = c.prepareStatement(
 					"insert into car(driver_id, car_name, comfort_level, number_seats, free) values(?,?,?,?,?)");
-			pstmt.setInt(1, entity.getDriverId());
+			pstmt.setObject(1, entity.getDriverId());
 			pstmt.setString(2, entity.getCarName());
 			pstmt.setString(3, entity.getComfortLevel());
 			pstmt.setInt(4, entity.getNumberSeats());
@@ -41,7 +41,7 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 		try (Connection c = createConnection()) {
 			PreparedStatement pstmt = c.prepareStatement(
 					"update car set driver_id=?, car_name=?, comfort_level=?, number_seats=?, free=? where id=?");
-			pstmt.setInt(1, entity.getDriverId());
+			pstmt.setObject(1, entity.getDriverId());
 			pstmt.setString(2, entity.getCarName());
 			pstmt.setString(3, entity.getComfortLevel());
 			pstmt.setInt(4, entity.getNumberSeats());

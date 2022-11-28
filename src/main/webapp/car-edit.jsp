@@ -16,7 +16,7 @@
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
 					<div class="input-field col s6">
-						<input type="text" name="carName" value="${dto.carName}" ${empty dto.id ? '' : 'disabled'} > <label for="carName">Car Name</label>
+						<input type="text" name="carName" value="${dto.carName}"> <label for="carName">Car Name</label>
 					</div>
 					<div class="input-field col s6">
 						<input type="text" name="driverName" value="${dto.driverName}"> <label for="driverName">Driver Name</label>
@@ -31,7 +31,7 @@
 						<input type="text" name="numberSeats" value="${dto.numberSeats}"> <label for="numberSeats">Number Seats</label>
 					</div>
 					<div class="input-field col s4">
-						<input type="text" name="free" value="${dto.free}"> <label for="free">Free</label>
+						<label><input type="checkbox" name="free" ${dto.free ? 'checked' : ''} value="true" /> <span>Free</span></label>
 					</div>
 					</div>
 				

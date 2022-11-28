@@ -94,18 +94,18 @@ public class OrdServlet extends HttpServlet{
 		ord.setDistance(Integer.parseInt((req.getParameter("price"))));
 		ord.setClientId(clientIdStr == null ? null : Integer.parseInt(clientIdStr));
 		ord.setCarId(carIdStr == null ? null : Integer.parseInt(carIdStr));
+		ord.setOrderTime(new Timestamp(new Date().getTime()));
+		ord.setArrivalTime(new Timestamp(new Date().getTime()));
+		ord.setOrderFinish(new Timestamp(new Date().getTime()));
 		if (Strings.isNullOrEmpty(ordIdStr)) {
 			// new entity
-			ord.setOrderTime(new Timestamp(new Date().getTime()));
-			ord.setArrivalTime(new Timestamp(new Date().getTime()));
-			ord.setOrderFinish(new Timestamp(new Date().getTime()));
 			ordDao.insert(ord);
 		} else {
 			// updated entity
 			ord.setId(Integer.parseInt(ordIdStr));
 			ordDao.update(ord);
 		}
-		res.sendRedirect("/car"); // will send 302 back to client and client will execute GET /car
+		res.sendRedirect("/ord"); // will send 302 back to client and client will execute GET /car
 	}
 
 	@Override

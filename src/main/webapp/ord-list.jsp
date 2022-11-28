@@ -21,9 +21,9 @@
 					<th>car name</th>
 					<th>price</th>
 					<th>distance</th>
-					<th>orderTime</th>
-					<th>arrivalTime</th>
-					<th>orderFinish</th>
+					<th>order time</th>
+					<th>arrival time</th>
+					<th>order finish</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -34,9 +34,11 @@
 					<td>${entity.carName}</td>
 					<td>${entity.price}</td>
 					<td>${entity.distance}</td>
+					<td>${entity.orderTime}</td>
 					<td>${entity.arrivalTime}</td>
 					<td>${entity.orderFinish}</td>
-					<td><a class="btn-floating btn-large cyan pulse"  href="/ord?view=edit"><i class="material-icons">add</i></a>
+					<td><a class="btn-small btn-floating waves-effect waves-light blue" title="редактировать" href="/ord?view=edit&id=${entity.id}"><i
+							class="material-icons">edit</i></a><a class="btn-small btn-floating waves-effect waves-light red" title="удалить" onclick="sendHTTPDelete('/ord?id=${entity.id}')"><i class="material-icons">delete</i></a></td>
 				</tr>
 			</tbody>
 		</table>

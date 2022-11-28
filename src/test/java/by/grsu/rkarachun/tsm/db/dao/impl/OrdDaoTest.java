@@ -20,7 +20,7 @@ public class OrdDaoTest extends AbstractTest {
 		Ord entity = new  Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(saveCar("Audi 100").getId());
-		entity.setPrice(12);
+		entity.setPrice(5);
 		entity.setDistance(12);
 		entity.setOrderTime(getCurrentTime());
 		entity.setArrivalTime(getCurrentTime());
@@ -34,7 +34,7 @@ public class OrdDaoTest extends AbstractTest {
 		Ord entity = new Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(saveCar("Audi 100").getId());
-		entity.setPrice(12);
+		entity.setPrice(5);
 		entity.setDistance(12);
 		entity.setOrderTime(getCurrentTime());
 		entity.setArrivalTime(getCurrentTime());
@@ -43,7 +43,7 @@ public class OrdDaoTest extends AbstractTest {
 
 		Client newClient = saveClient("new_Karachun");
 		Car newCar = saveCar("new_Audi 100");
-		entity.setPrice(13);
+		entity.setPrice(6);
 		entity.setDistance(12);
 		entity.setCarId(newCar.getId());
 		entity.setClientId(newClient.getId());
@@ -61,7 +61,7 @@ public class OrdDaoTest extends AbstractTest {
 		Ord entity = new  Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(saveCar("Audi 100").getId());
-		entity.setPrice(12);
+		entity.setPrice(5);
 		entity.setDistance(12);
 		entity.setOrderTime(getCurrentTime());
 		entity.setArrivalTime(getCurrentTime());
@@ -78,7 +78,7 @@ public class OrdDaoTest extends AbstractTest {
 		Ord entity = new  Ord();
 		entity.setClientId(saveClient("Karachun").getId());
 		entity.setCarId(saveCar("Audi 100").getId());
-		entity.setPrice(12);
+		entity.setPrice(5);
 		entity.setDistance(12);
 		entity.setOrderTime(getCurrentTime());
 		entity.setArrivalTime(getCurrentTime());
@@ -97,7 +97,7 @@ public class OrdDaoTest extends AbstractTest {
 			Ord entity = new  Ord();
 			entity.setClientId(saveClient("Karachun" +i).getId());
 			entity.setCarId(saveCar("Audi 100" +i).getId());
-			entity.setPrice(12);
+			entity.setPrice(5);
 			entity.setDistance(12);
 			entity.setOrderTime(getCurrentTime());
 			entity.setArrivalTime(getCurrentTime());
