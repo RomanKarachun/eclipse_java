@@ -22,10 +22,10 @@
 			<tbody>
 				<tr>
 					<th><a href="index.jsp"><i class="large material-icons">home</i></a></th>
-					 <th><a href="/ord"><i class="large material-icons">drag_handle</i></a></th>
-                     <th><a href="ord?view=edit"><i class="large material-icons">add</i></a></th>
-				     <th><a href="/car"><i class="large material-icons">list</i></a></th>
-				     <th><a href="car?view=edit"><i class="large material-icons">group_add</i></a></th>
+					 <th><a href="/ord"><i class="large material-icons">storage</i></a></th>
+				     <th><a href="/car"><i class="large material-icons">directions_car</i></a></th>
+				     <th><a href="/client"><i class="large material-icons">account_circle</i></a></th>
+				     <th><a href="/driver"><i class="large material-icons">local_taxi</i></a></th>
 				     <th><a href="#"><i class="large material-icons">exit_to_app</i></a></th>
 				</tr>
 			</tbody>
@@ -33,9 +33,9 @@
 				<tr>					
 				    <td>(Home page)</td>
 					<td>(Database of orders)</td>
-					<td>(Add/edit orders)</td>
 					<td>(Database of cars)</td>
-					<td>(Add/edit cars)</td>
+					<td>(Database of clients)</td>
+					<td>(Database of drivers)</td>
 					<td>(login/logout)</td>
 					
 				</tr>

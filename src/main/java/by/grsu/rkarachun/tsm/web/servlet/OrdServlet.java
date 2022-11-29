@@ -93,7 +93,7 @@ public class OrdServlet extends HttpServlet{
 		String carIdStr = req.getParameter("carId");
 
 		ord.setPrice(Integer.parseInt((req.getParameter("price"))));
-		ord.setDistance(Integer.parseInt((req.getParameter("price"))));
+		ord.setDistance(Integer.parseInt((req.getParameter("distance"))));
 		ord.setClientId(clientIdStr == null ? null : Integer.parseInt(clientIdStr));
 		ord.setCarId(carIdStr == null ? null : Integer.parseInt(carIdStr));
 		ord.setOrderTime(new Timestamp(new Date().getTime()));
@@ -103,7 +103,6 @@ public class OrdServlet extends HttpServlet{
 			// new entity
 			ordDao.insert(ord);
 		} else {
-			// updated entity
 			ord.setId(Integer.parseInt(ordIdStr));
 			ordDao.update(ord);
 		}
