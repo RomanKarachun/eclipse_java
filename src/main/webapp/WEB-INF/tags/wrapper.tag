@@ -20,7 +20,7 @@
 	<div class="nav-wrapper container">
 		<a id="logo-container" href="" class="brand-logo">TCM</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="index.jsp"><i class="large material-icons">home</i></a></li>
+			<li><a href="menu.jsp"><i class="large material-icons">home</i></a></li>
 			<li><a href="/ord"><i class="large material-icons">storage</i></a></li>
 			<li><a href="/car"><i class="large material-icons">directions_car</i></a></li>
 			<li><a href="/client"><i class="large material-icons">account_circle</i></a></li>

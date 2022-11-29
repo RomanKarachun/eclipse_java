@@ -20,6 +20,8 @@ import by.grsu.rkarachun.tsm.db.dao.impl.ClientDaoImpl;
 import by.grsu.rkarachun.tsm.db.model.Ord;
 import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Client;
+import by.grsu.rkarachun.tsm.web.dto.ClientDto;
+import by.grsu.rkarachun.tsm.web.dto.CarDto;
 import by.grsu.rkarachun.tsm.web.dto.OrdDto;
 
 public class OrdServlet extends HttpServlet{
@@ -81,9 +83,19 @@ public class OrdServlet extends HttpServlet{
 			dto.setOrderFinish(entity.getOrderFinish());;
 		}
 		req.setAttribute("dto", dto);
+		req.setAttribute("allCars", getAllCarsDtos());
 		req.getRequestDispatcher("ord-edit.jsp").forward(req, res);
 	}
 
+	private List<CarDto> getAllCarsDtos() {
+		return carDao.getAll().stream().map((entity) -> {
+			CarDto dto = new CarDto();
+			dto.setId(entity.getId());
+			dto.setCarName(entity.getCarName());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doPost");

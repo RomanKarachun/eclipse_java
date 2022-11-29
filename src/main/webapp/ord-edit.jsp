@@ -18,9 +18,15 @@
 					<div class="input-field col s3">
 						<input type="text" name="clientId" value="${dto.clientId}"> <label for="clientId">Client ID</label>
 					</div>
-					<div class="input-field col s3">
-						<input type="text" name="carId" value="${dto.carId}"> <label for="carName">Car ID</label>
-					</div>
+					<div class="col s3">
+					<label for="carId">Car ID</label> 
+					<select name="carId" class="browser-default" required>
+						<option value="">--select car--</option>
+						<c:forEach items="${allCars}" var="car">
+							<option value="${car.id}" <c:if test="${car.id eq dto.carId}">selected="selected"</c:if>>${car.carName}</option>
+						</c:forEach>
+					</select>
+				</div>
 					<div class="input-field col s3">
 						<input type="text" name="price" value="${dto.price}"> <label for="price">Price</label>
 					</div>

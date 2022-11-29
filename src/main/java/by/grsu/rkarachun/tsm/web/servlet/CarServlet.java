@@ -72,7 +72,7 @@ public class CarServlet extends HttpServlet{
 			dto.setFree(entity.getFree());
 		}
 		req.setAttribute("dto", dto);
-		req.setAttribute("allModels", getAllDriversDtos());
+		req.setAttribute("allDrivers", getAllDriversDtos());
 		req.getRequestDispatcher("car-edit.jsp").forward(req, res);
 	}
 
