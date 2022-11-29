@@ -16,7 +16,7 @@
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
 					<div class="input-field col s3">
-						<input type="text" name="clientId" value="${dto.clientId}"> <label for="clientId">Client ID</label>
+						<input type="text" name="clientId" required minlength=1 maxlength=50 value="${dto.clientId}"> <label for="clientId">Client ID</label>
 					</div>
 					<div class="col s3">
 					<label for="carId">Car ID</label> 
@@ -28,10 +28,10 @@
 					</select>
 				</div>
 					<div class="input-field col s3">
-						<input type="text" name="price" value="${dto.price}"> <label for="price">Price</label>
+						<input type="number" name="price" required minlength=1 maxlength=5 value="${dto.price}"> <label for="price">Price</label>
 					</div>
 					<div class="input-field col s3">
-						<input type="text" name="distance" value="${dto.distance}"> <label for="distance">Distance</label>
+						<input type="number" name="distance" required minlength=1 maxlength=5 value="${dto.distance}"> <label for="distance">Distance</label>
 					</div>
 					</div>
 

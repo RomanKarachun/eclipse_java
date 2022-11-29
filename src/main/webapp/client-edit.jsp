@@ -16,10 +16,10 @@
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
 					<div class="input-field col s6">
-						<input type="text" name="clientName" value="${dto.clientName}"> <label for="clientName">Client Name</label>
+						<input type="text" name="clientName" required minlength=1 maxlength=50 value="${dto.clientName}"> <label for="clientName">Client Name</label>
 					</div>
 					<div class="input-field col s6">
-						<input type="text" name="phoneNumber" value="${dto.phoneNumber}"> <label for="phoneNumber">Phone Number</label>
+						<input type="text" name="phoneNumber" required minlength=12 maxlength=12 value="${dto.phoneNumber}"> <label for="phoneNumber">Phone Number</label>
 					</div>
 				
 				</div>

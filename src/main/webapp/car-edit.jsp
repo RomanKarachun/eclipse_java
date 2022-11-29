@@ -16,7 +16,7 @@
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
 					<div class="input-field col s6">
-						<input type="text" name="carName" value="${dto.carName}"> <label for="carName">Car Name</label>
+						<input type="text" name="carName" required minlength=1 maxlength=50 value="${dto.carName}"> <label for="carName">Car Name</label>
 					</div>
 					<div class="col s6">
 					<label for="driverId">Driver ID</label> 
@@ -31,13 +31,13 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s4">
-						<input type="text" name="comfortLevel" value="${dto.comfortLevel}"> <label for="comfortLevel">Comfort Level</label>
+						<input type="text" name="comfortLevel" required minlength=1 maxlength=10 value="${dto.comfortLevel}"> <label for="comfortLevel">Comfort Level</label>
 					</div>
 					<div class="input-field col s4">
-						<input type="text" name="numberSeats" value="${dto.numberSeats}"> <label for="numberSeats">Number Seats</label>
+						<input type="number" name="numberSeats" required minlength=1 maxlength=2 value="${dto.numberSeats}"> <label for="numberSeats">Number Seats</label>
 					</div>
 					<div class="input-field col s4">
-						<label><input type="checkbox" name="free" ${dto.free ? 'checked' : ''} value="true" /> <span>Free</span></label>
+						<label><input type="checkbox" name="free" ${dto.free ? 'checked' : ''} required value="true" /> <span>Free</span></label>
 					</div>
 					</div>
 				
