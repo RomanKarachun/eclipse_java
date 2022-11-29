@@ -72,6 +72,8 @@ public class OrdServlet extends HttpServlet{
 			Integer ordId = Integer.parseInt(ordIdStr);
 			Ord entity = ordDao.getById(ordId);
 			dto.setId(entity.getId());
+			dto.setClientId(entity.getClientId());
+			dto.setCarId(entity.getCarId());
 			dto.setPrice(entity.getPrice());
 			dto.setDistance(entity.getDistance());
 			dto.setOrderTime(entity.getOrderTime());

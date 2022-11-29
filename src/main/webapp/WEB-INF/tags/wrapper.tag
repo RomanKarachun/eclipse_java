@@ -12,6 +12,7 @@
 	rel="stylesheet">
 <link href="/css/styles.css" rel="stylesheet">
 
+<script src="js/helpers.js"></script>
 </head>
 
 

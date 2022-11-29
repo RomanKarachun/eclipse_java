@@ -19,7 +19,7 @@
 						<input type="text" name="carName" value="${dto.carName}"> <label for="carName">Car Name</label>
 					</div>
 					<div class="input-field col s6">
-						<input type="text" name="driverName" value="${dto.driverName}"> <label for="driverName">Driver Name</label>
+						<input type="text" name="driverId" value="${dto.driverId}"> <label for="driverId">Driver ID</label>
 					</div>
 				
 				</div>

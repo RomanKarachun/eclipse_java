@@ -16,10 +16,10 @@
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
 					<div class="input-field col s3">
-						<input type="text" name="clientName" value="${dto.clientName}"> <label for="clientName">Client name</label>
+						<input type="text" name="clientId" value="${dto.clientId}"> <label for="clientId">Client ID</label>
 					</div>
 					<div class="input-field col s3">
-						<input type="text" name="carName" value="${dto.carName}"> <label for="carName">Car name</label>
+						<input type="text" name="carId" value="${dto.carId}"> <label for="carName">Car ID</label>
 					</div>
 					<div class="input-field col s3">
 						<input type="text" name="price" value="${dto.price}"> <label for="price">Price</label>

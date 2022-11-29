@@ -28,21 +28,21 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach var="entity" items="${list}" varStatus="loopCounter">
 				<tr>
-					<td>${entity.id}</td>
-					<td>${entity.clientName}</td>
-					<td>${entity.carName}</td>
-					<td>${entity.price}</td>
-					<td>${entity.distance}</td>
-					<td>${entity.orderTime}</td>
-					<td>${entity.arrivalTime}</td>
-					<td>${entity.orderFinish}</td>
+					<td><c:out value="${entity.id}" /></td>
+					<td><c:out value="${entity.clientName}" /></td>
+					<td><c:out value="${entity.carName}" /></td>
+					<td><c:out value="${entity.price}" /></td>
+					<td><c:out value="${entity.distance}" /></td>
+					<td><c:out value="${entity.orderTime}" /></td>
+					<td><c:out value="${entity.arrivalTime}" /></td>
+					<td><c:out value="${entity.orderFinish}" /></td>
 					<td><a class="btn-small btn-floating waves-effect waves-light blue" title="редактировать" href="/ord?view=edit&id=${entity.id}"><i
 							class="material-icons">edit</i></a><a class="btn-small btn-floating waves-effect waves-light red" title="удалить" onclick="sendHTTPDelete('/ord?id=${entity.id}')"><i class="material-icons">delete</i></a></td>
 				</tr>
-			</tbody>
-		</table>
-
-
+			</c:forEach>
+		</tbody>
+	</table>
 </t:wrapper>
 
