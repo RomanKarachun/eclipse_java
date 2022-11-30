@@ -84,6 +84,7 @@ public class OrdServlet extends HttpServlet{
 		}
 		req.setAttribute("dto", dto);
 		req.setAttribute("allCars", getAllCarsDtos());
+		req.setAttribute("allClients", getAllClientsDtos());
 		req.getRequestDispatcher("ord-edit.jsp").forward(req, res);
 	}
 
@@ -92,6 +93,15 @@ public class OrdServlet extends HttpServlet{
 			CarDto dto = new CarDto();
 			dto.setId(entity.getId());
 			dto.setCarName(entity.getCarName());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+	
+	private List<ClientDto> getAllClientsDtos() {
+		return clientDao.getAll().stream().map((entity) -> {
+			ClientDto dto = new ClientDto();
+			dto.setId(entity.getId());
+			dto.setClientName(entity.getClientName());
 			return dto;
 		}).collect(Collectors.toList());
 	}

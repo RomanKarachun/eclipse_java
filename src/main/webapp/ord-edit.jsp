@@ -15,9 +15,15 @@
 		<div class="row">
 		<input type="hidden" name="id" value="${dto.id}" />
 				<div class="row">
-					<div class="input-field col s3">
-						<input type="text" name="clientId" required minlength=1 maxlength=50 value="${dto.clientId}"> <label for="clientId">Client ID</label>
-					</div>
+					<div class="col s3">
+					<label for="clientId">Client ID</label> 
+					<select name="clientId" class="browser-default" required>
+						<option value="">--select client--</option>
+						<c:forEach items="${allClients}" var="client">
+							<option value="${client.id}" <c:if test="${client.id eq dto.clientId}">selected="selected"</c:if>>${client.clientName}</option>
+						</c:forEach>
+					</select>
+				</div>
 					<div class="col s3">
 					<label for="carId">Car ID</label> 
 					<select name="carId" class="browser-default" required>
