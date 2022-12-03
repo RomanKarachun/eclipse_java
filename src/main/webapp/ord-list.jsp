@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <c:set var="pageTitle" value="Orders list" scope="application" />
 
 <t:wrapper>
@@ -17,14 +18,14 @@
 		<table>
 			<thead>
 				<tr>
-					<th>id</th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="id">ID</mytaglib:sort-link></th>
 					<th>client name</th>
 					<th>car name</th>
-					<th>price</th>
-					<th>distance</th>
-					<th>order time</th>
-					<th>arrival time</th>
-					<th>order finish</th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="price">price</mytaglib:sort-link></th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="distance">distance</mytaglib:sort-link></th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="order_time">order time</mytaglib:sort-link></th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="arrival_time">arrival time</mytaglib:sort-link></th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="order_finish">order finish</mytaglib:sort-link></th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -45,5 +46,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<t:paging />
 </t:wrapper>
 

@@ -23,8 +23,9 @@ import by.grsu.rkarachun.tsm.db.model.Client;
 import by.grsu.rkarachun.tsm.web.dto.ClientDto;
 import by.grsu.rkarachun.tsm.web.dto.CarDto;
 import by.grsu.rkarachun.tsm.web.dto.OrdDto;
+import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
-public class OrdServlet extends HttpServlet{
+public class OrdServlet extends AbstractListServlet{
 	private static final IDao<Integer, Ord> ordDao = OrdDaoImpl.INSTANCE;
 	private static final IDao<Integer, Car> carDao = CarDaoImpl.INSTANCE;
 	private static final IDao<Integer, Client> clientDao = ClientDaoImpl.INSTANCE;
@@ -41,7 +42,15 @@ public class OrdServlet extends HttpServlet{
 	}
 
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Ord> ords = ordDao.getAll(); // get data
+		int totalOrds = ordDao.count(); // get count of ALL items
+
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalOrds); // init TableStateDto for specific
+																					// Servlet and saves it in current
+																					// request using key
+																					// "currentPageTableState" to be
+																					// used by 'paging' component
+
+		List<Ord> ords = ordDao.find(tableStateDto); // get data using paging and sorting params
 
 		List<OrdDto> dtos = ords.stream().map((entity) -> {
 			OrdDto dto = new OrdDto();

@@ -10,7 +10,9 @@ import java.util.List;
 import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Car;
+import by.grsu.rkarachun.tsm.db.model.Client;
 import by.grsu.rkarachun.tsm.db.model.Driver;
+import by.grsu.rkarachun.tsm.web.dto.SortDto;
 import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
 public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> {
@@ -20,18 +22,6 @@ public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> 
 		super();
 	}
 
-	@Override
-	public List<Driver> find(TableStateDto tableStateDto)
-	{
-		throw new RuntimeException("not implemented");
-	}
-	
-	@Override
-	public int count()
-	{
-		throw new RuntimeException("not implemented");
-	}
-	
 	@Override
 	public void insert(Driver entity) {
 		try (Connection c = createConnection()) {
@@ -111,6 +101,44 @@ public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> 
 		entity.setDriverName(rs.getString("driver_name"));
 		entity.setPhoneNumber(rs.getString("phone_number"));
 		return entity;
+	}
+	
+	@Override
+	public List<Driver> find(TableStateDto tableStateDto) {
+		List<Driver> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			StringBuilder sql = new StringBuilder("select * from driver");
+
+			final SortDto sortDto = tableStateDto.getSort();
+			if (sortDto != null) {
+				sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+			}
+
+			sql.append(" limit " + tableStateDto.getItemsPerPage());
+			sql.append(" offset " + resolveOffset(tableStateDto));
+
+			System.out.println("searching Drivers using SQL: " + sql);
+			ResultSet rs = c.createStatement().executeQuery(sql.toString());
+			while (rs.next()) {
+				Driver entity = rowToEntity(rs);
+				entitiesList.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select Driver entities", e);
+		}
+		return entitiesList;
+	}
+
+	@Override
+	public int count() {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select count(*) as c from driver");
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt("c");
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get drivers count", e);
+		}
 	}
 
 }

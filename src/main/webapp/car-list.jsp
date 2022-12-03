@@ -19,11 +19,11 @@
 			<thead>
 				<tr>
 					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="id">ID</mytaglib:sort-link></th>
-					<th>car name</th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="car_name">car name</mytaglib:sort-link></th>
 					<th>driver name</th>
-					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="comfortLevel">comfort level</mytaglib:sort-link></th>
-					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="numberSeats">number seats</mytaglib:sort-link></th>
-					<th>free</th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="comfort_level">comfort level</mytaglib:sort-link></th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="number_seats">number seats</mytaglib:sort-link></th>
+					<th><mytaglib:sort-link pageUrl="${pageUrl}" column="free">free</mytaglib:sort-link></th>
 					<th>actions</th>
 				</tr>
 			</thead>

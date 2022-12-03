@@ -11,6 +11,7 @@ import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Ord;
+import by.grsu.rkarachun.tsm.web.dto.SortDto;
 import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
 public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
@@ -24,18 +25,6 @@ public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 		super();
 	}
 
-	@Override
-	public List<Ord> find(TableStateDto tableStateDto)
-	{
-		throw new RuntimeException("not implemented");
-	}
-	
-	@Override
-	public int count()
-	{
-		throw new RuntimeException("not implemented");
-	}
-	
 	@Override
 	public void insert(Ord entity) {
 		try (Connection c = createConnection()) {
@@ -131,5 +120,43 @@ public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 		entity.setArrivalTime(rs.getTimestamp("arrival_time"));
 		entity.setOrderFinish(rs.getTimestamp("order_finish"));
 		return entity;
+	}
+	
+	@Override
+	public List<Ord> find(TableStateDto tableStateDto) {
+		List<Ord> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			StringBuilder sql = new StringBuilder("select * from ord");
+
+			final SortDto sortDto = tableStateDto.getSort();
+			if (sortDto != null) {
+				sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+			}
+
+			sql.append(" limit " + tableStateDto.getItemsPerPage());
+			sql.append(" offset " + resolveOffset(tableStateDto));
+
+			System.out.println("searching Cars using SQL: " + sql);
+			ResultSet rs = c.createStatement().executeQuery(sql.toString());
+			while (rs.next()) {
+				Ord entity = rowToEntity(rs);
+				entitiesList.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select Ord entities", e);
+		}
+		return entitiesList;
+	}
+
+	@Override
+	public int count() {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select count(*) as c from ord");
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt("c");
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get ords count", e);
+		}
 	}
 }

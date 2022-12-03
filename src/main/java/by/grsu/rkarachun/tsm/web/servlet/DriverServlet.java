@@ -13,10 +13,12 @@ import com.google.common.base.Strings;
 
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.dao.impl.DriverDaoImpl;
+import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Driver;
 import by.grsu.rkarachun.tsm.web.dto.DriverDto;
+import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
-public class DriverServlet extends HttpServlet{
+public class DriverServlet extends AbstractListServlet{
 	private static final IDao<Integer, Driver> driverDao = DriverDaoImpl.INSTANCE;
 
 	@Override
@@ -31,7 +33,15 @@ public class DriverServlet extends HttpServlet{
 	}
 
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Driver> drivers = driverDao.getAll(); // get data
+		int totalDrivers = driverDao.count(); // get count of ALL items
+
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalDrivers); // init TableStateDto for specific
+																					// Servlet and saves it in current
+																					// request using key
+																					// "currentPageTableState" to be
+																					// used by 'paging' component
+
+		List<Driver> drivers = driverDao.find(tableStateDto); // get data using paging and sorting params
 
 		List<DriverDto> dtos = drivers.stream().map((entity) -> {
 			DriverDto dto = new DriverDto();

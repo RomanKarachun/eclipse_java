@@ -11,6 +11,7 @@ import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Client;
+import by.grsu.rkarachun.tsm.web.dto.SortDto;
 import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
 public class ClientDaoImpl extends AbstractDao implements IDao<Integer, Client> {
@@ -22,18 +23,6 @@ public class ClientDaoImpl extends AbstractDao implements IDao<Integer, Client> 
 	// pattern) outside of current class
 	private ClientDaoImpl() {
 		super();
-	}
-
-	@Override
-	public List<Client> find(TableStateDto tableStateDto)
-	{
-		throw new RuntimeException("not implemented");
-	}
-	
-	@Override
-	public int count()
-	{
-		throw new RuntimeException("not implemented");
 	}
 	
 	@Override
@@ -115,6 +104,44 @@ public class ClientDaoImpl extends AbstractDao implements IDao<Integer, Client> 
 		entity.setClientName(rs.getString("client_name"));
 		entity.setPhoneNumber(rs.getString("phone_number"));
 		return entity;
+	}
+	
+	@Override
+	public List<Client> find(TableStateDto tableStateDto) {
+		List<Client> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			StringBuilder sql = new StringBuilder("select * from client");
+
+			final SortDto sortDto = tableStateDto.getSort();
+			if (sortDto != null) {
+				sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+			}
+
+			sql.append(" limit " + tableStateDto.getItemsPerPage());
+			sql.append(" offset " + resolveOffset(tableStateDto));
+
+			System.out.println("searching Clients using SQL: " + sql);
+			ResultSet rs = c.createStatement().executeQuery(sql.toString());
+			while (rs.next()) {
+				Client entity = rowToEntity(rs);
+				entitiesList.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select Client entities", e);
+		}
+		return entitiesList;
+	}
+
+	@Override
+	public int count() {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select count(*) as c from client");
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt("c");
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get clients count", e);
+		}
 	}
 
 }
