@@ -26,7 +26,7 @@
 				     <th><a href="/car"><i class="large material-icons">directions_car</i></a></th>
 				     <th><a href="/client"><i class="large material-icons">account_circle</i></a></th>
 				     <th><a href="/driver"><i class="large material-icons">local_taxi</i></a></th>
-				     <th><a href="#"><i class="large material-icons">exit_to_app</i></a></th>
+				     <th class="active"><a onclick="sendHTTPDelete('/login')"><i class="large material-icons">exit_to_app</i></a></th>
 				</tr>
 			</tbody>
 			<tbody>

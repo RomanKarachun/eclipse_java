@@ -18,8 +18,9 @@ import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Driver;
 import by.grsu.rkarachun.tsm.web.dto.CarDto;
 import by.grsu.rkarachun.tsm.web.dto.DriverDto;
+import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
-public class CarServlet extends HttpServlet{
+public class CarServlet extends AbstractListServlet{
 	private static final IDao<Integer, Car> carDao = CarDaoImpl.INSTANCE;
 	private static final IDao<Integer, Driver> driverDao = DriverDaoImpl.INSTANCE;
 
@@ -35,7 +36,15 @@ public class CarServlet extends HttpServlet{
 	}
 
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Car> cars = carDao.getAll(); // get data
+		int totalCars = carDao.count(); // get count of ALL items
+
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalCars); // init TableStateDto for specific
+																					// Servlet and saves it in current
+																					// request using key
+																					// "currentPageTableState" to be
+																					// used by 'paging' component
+
+		List<Car> cars = carDao.find(tableStateDto); // get data using paging and sorting params
 
 		List<CarDto> dtos = cars.stream().map((entity) -> {
 			CarDto dto = new CarDto();

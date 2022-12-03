@@ -9,7 +9,9 @@ import java.util.List;
 
 import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
+import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Driver;
+import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
 public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> {
 	public static final DriverDaoImpl INSTANCE = new DriverDaoImpl();
@@ -18,6 +20,18 @@ public class DriverDaoImpl extends AbstractDao implements IDao<Integer, Driver> 
 		super();
 	}
 
+	@Override
+	public List<Driver> find(TableStateDto tableStateDto)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	
+	@Override
+	public int count()
+	{
+		throw new RuntimeException("not implemented");
+	}
+	
 	@Override
 	public void insert(Driver entity) {
 		try (Connection c = createConnection()) {

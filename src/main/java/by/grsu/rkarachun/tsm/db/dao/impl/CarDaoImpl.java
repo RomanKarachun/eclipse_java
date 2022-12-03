@@ -10,6 +10,8 @@ import java.util.List;
 import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
 import by.grsu.rkarachun.tsm.db.model.Car;
+import by.grsu.rkarachun.tsm.web.dto.SortDto;
+import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
 public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 	public static final CarDaoImpl INSTANCE = new CarDaoImpl();
@@ -111,5 +113,43 @@ public class CarDaoImpl extends AbstractDao implements IDao<Integer, Car> {
 		// getObject() is unsupported by current JDBC driver. We will get "0" if field
 		// is NULL in DB
 		return entity;
+	}
+	
+	@Override
+	public List<Car> find(TableStateDto tableStateDto) {
+		List<Car> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			StringBuilder sql = new StringBuilder("select * from car");
+
+			final SortDto sortDto = tableStateDto.getSort();
+			if (sortDto != null) {
+				sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+			}
+
+			sql.append(" limit " + tableStateDto.getItemsPerPage());
+			sql.append(" offset " + resolveOffset(tableStateDto));
+
+			System.out.println("searching Cars using SQL: " + sql);
+			ResultSet rs = c.createStatement().executeQuery(sql.toString());
+			while (rs.next()) {
+				Car entity = rowToEntity(rs);
+				entitiesList.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select Car entities", e);
+		}
+		return entitiesList;
+	}
+
+	@Override
+	public int count() {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select count(*) as c from car");
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt("c");
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get cars count", e);
+		}
 	}
 }

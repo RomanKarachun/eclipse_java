@@ -9,7 +9,9 @@ import java.util.List;
 
 import by.grsu.rkarachun.tsm.db.dao.AbstractDao;
 import by.grsu.rkarachun.tsm.db.dao.IDao;
+import by.grsu.rkarachun.tsm.db.model.Car;
 import by.grsu.rkarachun.tsm.db.model.Ord;
+import by.grsu.rkarachun.tsm.web.dto.TableStateDto;
 
 public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 
@@ -22,6 +24,18 @@ public class OrdDaoImpl extends AbstractDao implements IDao<Integer, Ord> {
 		super();
 	}
 
+	@Override
+	public List<Ord> find(TableStateDto tableStateDto)
+	{
+		throw new RuntimeException("not implemented");
+	}
+	
+	@Override
+	public int count()
+	{
+		throw new RuntimeException("not implemented");
+	}
+	
 	@Override
 	public void insert(Ord entity) {
 		try (Connection c = createConnection()) {
