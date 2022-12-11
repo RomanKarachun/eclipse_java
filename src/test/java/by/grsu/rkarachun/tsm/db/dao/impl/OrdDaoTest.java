@@ -51,9 +51,9 @@ public class OrdDaoTest extends AbstractTest {
 		orderDao.update(entity);
 
 		Ord updatedEntity = orderDao.getById(entity.getId());
-		Assertions.assertNotEquals(newClient.getId(), updatedEntity.getClientId());;
+		Assertions.assertEquals(newClient.getId(), updatedEntity.getClientId());;
 		Assertions.assertEquals(newCar.getId(), updatedEntity.getCarId());;
-		Assertions.assertEquals(updatedEntity.getOrderFinish(), updatedEntity.getOrderTime());
+		Assertions.assertNotEquals(updatedEntity.getOrderFinish(), updatedEntity.getOrderTime());
 	}
 
 	@Test

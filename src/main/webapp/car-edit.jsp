@@ -34,7 +34,7 @@
 						<input type="text" name="comfortLevel" required minlength=1 maxlength=10 value="${dto.comfortLevel}"> <label for="comfortLevel">Comfort Level</label>
 					</div>
 					<div class="input-field col s4">
-						<input type="number" name="numberSeats" required minlength=1 maxlength=2 value="${dto.numberSeats}"> <label for="numberSeats">Number Seats</label>
+						<input type="number" name="numberSeats" required min="1" max="2" value="${dto.numberSeats}"> <label for="numberSeats">Number Seats</label>
 					</div>
 					<div class="input-field col s4">
 						<label><input type="checkbox" name="free" ${dto.free ? 'checked' : ''} required value="true" /> <span>Free</span></label>

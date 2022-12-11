@@ -34,10 +34,10 @@
 					</select>
 				</div>
 					<div class="input-field col s3">
-						<input type="number" name="price" required minlength=1 maxlength=5 value="${dto.price}"> <label for="price">Price</label>
+						<input type="number" name="price" required min="1" max="5" value="${dto.price}"> <label for="price">Price</label>
 					</div>
 					<div class="input-field col s3">
-						<input type="number" name="distance" required minlength=1 maxlength=5 value="${dto.distance}"> <label for="distance">Distance</label>
+						<input type="number" name="distance" required min="1" max="5" value="${dto.distance}"> <label for="distance">Distance</label>
 					</div>
 					</div>
 
